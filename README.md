@@ -30,4 +30,13 @@ alias ctags=“`brew —prefix`/bin/ctags”
 ```
 sudo apt-get install exuberant-ctags
 ```
+##Install all plugins
+### install striaght from command line
+```
+vim +PluginInstall +qall
+```
+### from vim window
+```
+:PluginInstall
+```
  
