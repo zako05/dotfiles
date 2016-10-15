@@ -111,55 +111,6 @@ function parse_ruby_version {
 export PS1="\[\033[G\]${PURPLE}\$(parse_ruby_version)${GREEN}\w${YELLOW}\$(parse_git_branch)${NONE} "
 export PROMPT_COMMAND='echo -ne "\033]0;$(basename "$(dirname "$PWD")")/$(basename "$PWD")\007"'
 
-alias ..="cd .."
-alias ...="cd ../.."
-alias ....="cd ../../.."
-alias l="ls -lF"
-alias grep="GREP_COLOR='1;37;44' LANG=C grep --color=auto"
-alias md="mkdir -p"
-
-# bundler
-alias be="bundle exec"
-alias bi="bundle install"
-alias bu="bundle update"
-alias bo="bundle open"
-
-# rails
-alias r="rails"
-
-# git
-alias g='git'
-for command in a aa au \
-               b \
-               c ca cam co cp cpnx \
-               d ds dw \
-               f \
-               g ga \
-               l lr \
-               m \
-               o \
-               p \
-               pf \
-               r ra rc ri \
-               s \
-               t ta tc td tl tp \
-               u us \
-               w wp
-do
-    alias "g$command"="g $command"
-done
-
-if [ -f ~/.git-completion.bash ]; then
-  . ~/.git-completion.bash
-fi
-
-if [ -f $(brew --prefix)/etc/bash_completion ]; then
-  . $(brew --prefix)/etc/bash_completion
-fi
-
-# vim
-alias vim='/usr/local/bin/vim'
-
 source ~/.bashrc
 cd .
 
