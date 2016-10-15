@@ -1,0 +1,2 @@
+DOTFILES_DIRS="$HOME/workspace/dotfiles"
+EXCLUDES=$HOME/workspace/dotfiles:README.dm
