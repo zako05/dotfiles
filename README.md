@@ -1,12 +1,15 @@
 #Dotfiles
-
 ##Install rcm
 ###OS X with Homebrew
 ```
 brew tap thoughtbot/formulae
 brew install rcm
 ```
-
+##Install dotfiles
+```
+env RCRC=$HOME/workspace/dotfiles/rcrc rcup
+```
+#VIM Dependencies
 ##Install vundle
 ```
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
@@ -18,7 +21,7 @@ brew install the_silver_searcher
 ```
 ###Linux (Debian-based systems)
 ```
-apt-get install silversearcher-ag
+sudo apt-get install silversearcher-ag
 ```
 ##Install ctags
 ###OS X with Homebrew
