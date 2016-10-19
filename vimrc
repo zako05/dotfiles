@@ -1,3 +1,7 @@
+" nerdtree broken, directories are all prefixed with ?~V (ubuntu 14.04 (trusty))
+" link: http://stackoverflow.com/a/18929822
+" set encoding=utf-8
+
 " set nocompatible
 " filetype off
 
