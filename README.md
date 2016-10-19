@@ -5,6 +5,12 @@
 brew tap thoughtbot/formulae
 brew install rcm
 ```
+###Linux (debian-based systems)
+```
+sudo add-apt-repository ppa:martin-frost/thoughtbot-rcm
+sudo apt-get update
+sudo apt-get install rcm
+```
 ##Install dotfiles
 ```
 env RCRC=$HOME/workspace/dotfiles/rcrc rcup
