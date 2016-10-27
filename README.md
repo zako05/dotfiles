@@ -29,6 +29,14 @@ brew install the_silver_searcher
 ```
 sudo apt-get install silversearcher-ag
 ```
+###Intergration into vim
+```
+cd ~/.vim/bundle && git clone https://github.com/rking/ag.vim ag 
+```
+_optional, because it's already part of vimrc_
+```
+echo “set runtimepath^=~/.vim/bundle/ag.vim" >> ~/.vimrc"
+```
 ##Install ctags
 ###OS X with Homebrew
 ```

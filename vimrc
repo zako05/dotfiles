@@ -1,7 +1,3 @@
-" nerdtree broken, directories are all prefixed with ?~V (ubuntu 14.04 (trusty))
-" link: http://stackoverflow.com/a/18929822
-" set encoding=utf-8
-
 " set nocompatible
 " filetype off
 
@@ -18,7 +14,8 @@ set backspace=2
 
 " accessing the system clipboard
 " set clipboard=unnamedplus
-set clipboard=unnamed
+" set clipboard=unnamed
+set clipboard^=unnamed
 
 " set status line to be always visible
 set laststatus=2
