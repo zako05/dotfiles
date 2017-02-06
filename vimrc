@@ -1,5 +1,5 @@
-" set nocompatible
-" filetype off
+" Use Vim settings, rather then Vi settings
+set nocompatible
 
 " ag integration into Vim
 set runtimepath^=~/.vim/bundle/ag
@@ -12,16 +12,28 @@ set runtimepath^=~/.vim/bundle/ctrlp.vim
 " fix the problem wiht backspace in vim version 7.4 or higher
 set backspace=2
 
-" accessing the system clipboard
+" use system clipboard
 " set clipboard=unnamedplus
 " set clipboard=unnamed
 set clipboard^=unnamed
+" set clipboard+=unnamedplus
 
-" set status line to be always visible
+" always display status line
 set laststatus=2
 
 " get the full path of current file ctrl+g
 set statusline+=%F
+
+" Tabs and spaces
+set tabstop=2
+set softtabstop=2
+set shiftwidth=2
+set expandtab
+
+" vertical line/ruler
+set colorcolumn=80 
+" show the cursor position all the time
+set ruler
 
 " Color scheme
 syntax enable
@@ -35,6 +47,12 @@ hi ColorColumn ctermbg=238
 " set numberwidth=6
 " set relativenumber
 set number
+
+" Quicker window movement
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-h> <C-w>h
+nnoremap <C-l> <C-w>l
 
 " Leader
 let mapleader = " "
@@ -57,8 +75,11 @@ map <Leader>q :q<CR>
 " fuzzy tag
 map <Leader>. :CtrlPTag<CR>
 
-" using tab key abbreviation expander
-imap <expr> <tab> emmet#expandAbbrIntelligent("\<tab>")
+" Index ctags from any project, including those outside Rails
+map <Leader>ct :!ctags -R .<CR>
+
+" emmet remap abbreviation expander from <C-y>, to use tab key 
+" imap <expr> <tab> emmet#expandAbbrIntelligent("\<tab>")
 
 call vundle#begin('~/.vim/bundle')
 
@@ -86,9 +107,6 @@ Plugin 'jelera/vim-javascript-syntax'
 Plugin 'kchmck/vim-coffee-script'
 
 call vundle#end()
-
-" vertical line/ruler
-set colorcolumn=80 
 
 filetype plugin indent on    " required
 
