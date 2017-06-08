@@ -1,2 +1,2 @@
-DOTFILES_DIRS="$HOME/workspace/dotfiles"
-EXCLUDES=$HOME/workspace/dotfiles:README.dm
+DOTFILES_DIRS="/workspace/dotfiles"
+EXCLUDES=/workspace/dotfiles:README.dm
