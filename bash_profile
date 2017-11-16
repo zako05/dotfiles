@@ -14,6 +14,13 @@ shopt -s histappend
 export RUBYOPT=""
 export PGOPTIONS="-c client_min_messages=WARNING"
 
+# android studio
+# export ANDROID_HOME=/Users/michalzak/Library/Android/sdk
+# export PATH=$ANDROID_HOME/platform-tools:$PATH
+# export PATH=$ANDROID_HOME/tools:$PATH
+# export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_131.jdk/Contents/Home
+# export PATH=$JAVA_HOME/bin:$PATH
+
 # Colours
 RED="\[\033[0;31m\]"
 YELLOW="\[\033[0;33m\]"

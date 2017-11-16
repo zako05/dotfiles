@@ -1,6 +1,8 @@
 " Use Vim settings, rather then Vi settings
 set nocompatible
 
+set encoding=utf-8
+
 " ag integration into Vim
 set runtimepath^=~/.vim/bundle/ag
 
