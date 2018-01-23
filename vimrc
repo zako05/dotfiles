@@ -56,6 +56,9 @@ nnoremap <C-k> <C-w>k
 nnoremap <C-h> <C-w>h
 nnoremap <C-l> <C-w>l
 
+" single file deletion 
+nnoremap <C-d> :call delete(expand('%'))<CR>
+
 " Leader
 let mapleader = " "
 
