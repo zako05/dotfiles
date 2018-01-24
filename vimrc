@@ -56,14 +56,14 @@ nnoremap <C-k> <C-w>k
 nnoremap <C-h> <C-w>h
 nnoremap <C-l> <C-w>l
 
-" single file deletion 
-nnoremap <C-d> :call delete(expand('%'))<CR>
-
 " Leader
 let mapleader = " "
 
 " Search for string patterns inside files
 map <Leader>a :Ag
+
+" single file deletion 
+map <Leader>d :call delete(expand('%'))<CR>
 
 " Toggle NERDTree
 map <Leader>f :NERDTreeToggle<CR>
