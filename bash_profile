@@ -1,4 +1,12 @@
-source /etc/bashrc
+sc="$(ls /etc | grep bash)"
+for el in ${sc[*]}
+do
+  if [ "$el" == "bashrc" ]; then
+    source /etc/bashrc
+    break
+  fi
+done
+
 export PATH=~/bin:/usr/local/bin:/usr/local/sbin:/Developer/usr/bin:$PATH
 
 # shell
