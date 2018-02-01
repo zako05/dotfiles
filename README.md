@@ -56,4 +56,23 @@ vim +PluginInstall +qall
 ```
 :PluginInstall
 ```
- 
+# TMUX
+## Install tmux plugin manager
+```
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+```
+### type this in terminal if tmux is already running 
+```
+tmux source ~/.tmux.conf
+```
+or
+```
+prefix-: source ~/.tmux.conf
+```
+## Install tmux plugin(s)
+```
+add new pugin to ~/.tmux.conf with set -g @plugin '...'
+```
+```
+press prefix + I to fetch the plugin
+```
