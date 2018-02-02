@@ -8,6 +8,14 @@ brew install rcm
 ### Linux (debian-based systems)
 ```
 sudo add-apt-repository ppa:martin-frost/thoughtbot-rcm
+```
+or
+_this works in most of the cases_
+```
+wget -qO - https://apt.thoughtbot.com/thoughtbot.gpg.key | sudo apt-key add -
+echo "deb http://apt.thoughtbot.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/thoughtbot.list
+```
+```
 sudo apt-get update
 sudo apt-get install rcm
 ```
