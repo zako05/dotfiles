@@ -10,6 +10,7 @@ brew install rcm
 sudo add-apt-repository ppa:martin-frost/thoughtbot-rcm
 ```
 or
+
 _this works in most of the cases_
 ```
 wget -qO - https://apt.thoughtbot.com/thoughtbot.gpg.key | sudo apt-key add -
