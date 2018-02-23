@@ -86,7 +86,8 @@ add new pugin to ~/.tmux.conf with set -g @plugin '...'
 press prefix + I to fetch the plugin
 ```
 # BASH 
-## Enable bash shell completion by installing bash-completion via brew
+## Enable bash shell completion by installing bash-completion
+### OS X with Homebrew
 ```
 brew install bash-completion
 ```
