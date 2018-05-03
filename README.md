@@ -50,7 +50,7 @@ echo “set runtimepath^=~/.vim/bundle/ag.vim" >> ~/.vimrc"
 ### OS X with Homebrew
 ```
 brew install ctags
-alias ctags=“`brew —prefix`/bin/ctags”
+alias ctags="`brew -—prefix`/bin/ctags"
 ```
 ### Linux (Debian-based systems)
 ```

@@ -16,8 +16,8 @@ set backspace=2
 
 " use system clipboard
 " set clipboard=unnamedplus
-" set clipboard=unnamed
-set clipboard^=unnamed
+set clipboard=unnamed
+" set clipboard^=unnamed
 " set clipboard+=unnamedplus
 
 " always display status line
