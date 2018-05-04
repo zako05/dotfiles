@@ -1,30 +1,23 @@
-" Use Vim settings, rather then Vi settings
-set nocompatible
+" GENERAL {{{
+"
 
+if filereadable(expand("~/.vimrc.bundles"))
+  source ~/.vimrc.bundles
+endif
+
+set nocompatible        " Use Vim settings, rather then Vi settings
 set encoding=utf-8
-
-" ag integration into Vim
-set runtimepath^=~/.vim/bundle/ag
+set clipboard+=unnamed  " use system clipboard
+set laststatus=2        " always display status line
+set backspace=2         " fix the problem wiht backspace in vim version 7.4 or higher
+set statusline+=%F      " get the full path of current file ctrl+g
+set number
 
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/gruvbox
-set rtp+=~/.vim/bundle/Vundle.vim
+" set rtp+=~/.vim/bundle/Vundle.vim
 set runtimepath^=~/.vim/bundle/ctrlp.vim
-
-" fix the problem wiht backspace in vim version 7.4 or higher
-set backspace=2
-
-" use system clipboard
-" set clipboard=unnamedplus
-set clipboard=unnamed
-" set clipboard^=unnamed
-" set clipboard+=unnamedplus
-
-" always display status line
-set laststatus=2
-
-" get the full path of current file ctrl+g
-set statusline+=%F
+set runtimepath^=~/.vim/bundle/ag " ag integration into Vim
 
 " Tabs and spaces
 set tabstop=2
@@ -32,23 +25,9 @@ set softtabstop=2
 set shiftwidth=2
 set expandtab
 
-" vertical line/ruler
-set colorcolumn=80 
-" show the cursor position all the time
-set ruler
-
-" Color scheme
-syntax enable
-" syntax on
-colorscheme gruvbox
-let g:gruvbox_contrast_dark='hard'
-set background=dark
-hi ColorColumn ctermbg=238
-
-" Numbers
-" set numberwidth=6
-" set relativenumber
-set number
+" }}}
+" KEY BINDINGS {{{
+"
 
 " Quicker window movement
 nnoremap <C-j> <C-w>j
@@ -83,40 +62,59 @@ map <Leader>. :CtrlPTag<CR>
 " Index ctags from any project, including those outside Rails
 map <Leader>ct :!ctags -R .<CR>
 
+" Give a shortcut key to NERDTree
+" map <F2> :NERDTreeToggle<CR>
+
+" }}}
+" VISUAL {{{
+"
+
+" vertical line/ruler
+set colorcolumn=80 
+" show the cursor position all the time
+set ruler
+
+" Color scheme
+syntax enable
+" syntax on
+colorscheme gruvbox
+let g:gruvbox_contrast_dark='hard'
+set background=dark
+hi ColorColumn ctermbg=238
+
+" }}}
+
 " emmet remap abbreviation expander from <C-y>, to use tab key 
 " imap <expr> <tab> emmet#expandAbbrIntelligent("\<tab>")
 
-call vundle#begin('~/.vim/bundle')
+" call vundle#begin('~/.vim/bundle')
 
 " let Vundle manage Vundle,
-Plugin 'VundleVim/Vundle.vim'
+" Plugin 'VundleVim/Vundle.vim'
+"
+" Plugin 'tomtom/tcomment_vim'
+" Plugin 'scrooloose/nerdTree'
+" Plugin 'ctrlpvim/ctrlp.vim'
+" Plugin 'mattn/emmet-vim'
+" Plugin 'rizzatti/dash.vim'
+" Plugin 'tpope/vim-rails'
+" Plugin 'tpope/vim-bundler'
+" " Plugin 'tpope/vim-cucumber'
+" Plugin 'tpope/vim-surround'
+" Plugin 'tpope/vim-fugitive'
+" Plugin 'tpope/vim-rake'
+" Plugin 'tpope/vim-eunuch'
+" Plugin 'slim-template/vim-slim'
+" Plugin 'airblade/vim-gitgutter'
+" Plugin 'vim-ruby/vim-ruby'
+" Plugin 'morhetz/gruvbox'
+" Plugin 'jiangmiao/auto-pairs'
+" Plugin 'jelera/vim-javascript-syntax'
+" Plugin 'kchmck/vim-coffee-script'
 
-Plugin 'tomtom/tcomment_vim'
-Plugin 'scrooloose/nerdTree'
-Plugin 'ctrlpvim/ctrlp.vim'
-Plugin 'mattn/emmet-vim'
-Plugin 'rizzatti/dash.vim'
-Plugin 'tpope/vim-rails'
-Plugin 'tpope/vim-bundler'
-" Plugin 'tpope/vim-cucumber'
-Plugin 'tpope/vim-surround'
-Plugin 'tpope/vim-fugitive'
-Plugin 'tpope/vim-rake'
-Plugin 'tpope/vim-eunuch'
-Plugin 'slim-template/vim-slim'
-Plugin 'airblade/vim-gitgutter'
-Plugin 'vim-ruby/vim-ruby'
-Plugin 'morhetz/gruvbox'
-Plugin 'jiangmiao/auto-pairs'
-Plugin 'jelera/vim-javascript-syntax'
-Plugin 'kchmck/vim-coffee-script'
-
-call vundle#end()
-
+" call vundle#end()
+"
 filetype plugin indent on    " required
-
-" Give a shortcut key to NERDTree
-map <F2> :NERDTreeToggle<CR>
 
 " Show line numbers and hidden files in NERD tree
 let NERDTreeShowLineNumbers=1

@@ -1,2 +1,3 @@
 DOTFILES_DIRS="/workspace/dotfiles"
 EXCLUDES=/workspace/dotfiles:README.dm
+EXCLUDES=/workspace/dotfiles:*.log

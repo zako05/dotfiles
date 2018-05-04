@@ -1,0 +1,32 @@
+if &compatible
+  set nocompatible
+end
+
+set rtp+=~/.vim/bundle/Vundle.vim
+
+call vundle#begin('~/.vim/bundle')
+" call plug#begin('~/.vim/bundle')
+
+" let Vundle manage Vundle,
+Plugin 'VundleVim/Vundle.vim'
+Plugin 'tomtom/tcomment_vim'
+Plugin 'scrooloose/nerdTree'
+Plugin 'ctrlpvim/ctrlp.vim'
+Plugin 'mattn/emmet-vim'
+Plugin 'rizzatti/dash.vim'
+Plugin 'tpope/vim-rails'
+Plugin 'tpope/vim-bundler'
+Plugin 'tpope/vim-surround'
+Plugin 'tpope/vim-fugitive'
+Plugin 'tpope/vim-rake'
+Plugin 'tpope/vim-eunuch'
+Plugin 'slim-template/vim-slim'
+Plugin 'airblade/vim-gitgutter'
+Plugin 'vim-ruby/vim-ruby'
+Plugin 'morhetz/gruvbox'
+Plugin 'jiangmiao/auto-pairs'
+Plugin 'jelera/vim-javascript-syntax'
+Plugin 'kchmck/vim-coffee-script'
+
+call vundle#end()
+" call plug#end()
