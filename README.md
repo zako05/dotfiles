@@ -22,7 +22,7 @@ sudo apt-get install rcm
 ```
 ## Install dotfiles
 ```
-env RCRC=$HOME/workspace/dotfiles/rcrc rcup
+env RCRC=$HOME/dotfiles/rcrc rcup
 ```
 # VIM Dependencies
 ## Install vundle
