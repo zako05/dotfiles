@@ -96,3 +96,12 @@ then add the following to your ~/.bashrc <-- already added
 if [`brew --prefix`/etc/bash_completion ]
   `brew --prefix`/etc/bash_completion
 ```
+## Install keychain (https://www.funtoo.org/Keychain)
+### OS X with Homebreww
+```
+brew install keychain
+```
+### Linux (Debian-based systems)
+```
+sudo apt-get install keychain
+```
