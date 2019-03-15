@@ -85,17 +85,17 @@ vim +PluginInstall +qall
 # TMUX
 ## [TMUX clipboard](https://bit.ly/2F3xQPd)
 ### MacOS
-pbcopy
+_[todo] pbcopy_
 ### Linux (debian-based systems, e.g. ubuntu)
-#### xclip (prefered)
+Need to add/update following in 'tmux.conf' file.
 ```
-...
 set-option -s set-clipboard off
-...
-bind -T copy-mode-vi y send-keys -X copy-pipe-and-cancel "xclip -i -f -selection primary | xclip -i -selection clipboard"
-...
 ```
-#### [xsel](https://bit.ly/2Fep6qK)
+#### ...for xclip (prefered)
+```
+bind -T copy-mode-vi y send-keys -X copy-pipe-and-cancel "xclip -i -f -selection primary | xclip -i -selection clipboard"
+```
+#### ...for [xsel](https://bit.ly/2Fep6qK)
 ```
 bind -T copy-mode-vi y send-keys -X copy-pipe-and-cancel "xsel -i --clipboard"
 ```
