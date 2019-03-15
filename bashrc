@@ -13,5 +13,5 @@ do
   fi
 done
 
-stty start undef stop undef
+# stty start undef stop undef
 alias ctags='/usr/local/bin/ctags'
