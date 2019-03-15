@@ -12,8 +12,18 @@ Plugin 'VundleVim/Vundle.vim'
 Plugin 'tomtom/tcomment_vim'
 Plugin 'scrooloose/nerdTree'
 Plugin 'ctrlpvim/ctrlp.vim'
-Plugin 'mattn/emmet-vim'
-Plugin 'rizzatti/dash.vim'
+" slim syntax highlighting for vim (http://slim-lang.com/)
+" Slim is a very popular template language, using frequently in Ruby on Rails,
+" it has many cool features and borrows a lot from haml (https://bit.ly/2TIxEOT)
+Plugin 'slim-template/vim-slim'
+" shows which lines have been added, modified, or removed
+Plugin 'airblade/vim-gitgutter'
+" bright theme with pastel 'retro groove' colors
+Plugin 'morhetz/gruvbox'
+" insert or delete brackets, parens, quotes in pair
+Plugin 'jiangmiao/auto-pairs'
+Plugin 'vim-ruby/vim-ruby'
+" tim pope's VIM bundles https://github.com/tpope?tab=repositories
 Plugin 'tpope/vim-rails'
 Plugin 'tpope/vim-bundler'
 Plugin 'tpope/vim-surround'
@@ -21,13 +31,10 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-rake'
 Plugin 'tpope/vim-eunuch'
 Plugin 'tpope/vim-cucumber'
-Plugin 'slim-template/vim-slim'
-Plugin 'airblade/vim-gitgutter'
-Plugin 'vim-ruby/vim-ruby'
-Plugin 'morhetz/gruvbox'
-Plugin 'jiangmiao/auto-pairs'
-Plugin 'jelera/vim-javascript-syntax'
-Plugin 'kchmck/vim-coffee-script'
+" improves HTML & CSS workflow (https://emmet.io/)
+Plugin 'mattn/emmet-vim'
+" dash app integration into VIM, only for macOS users
+Plugin 'rizzatti/dash.vim'
 
 call vundle#end()
 " call plug#end()
