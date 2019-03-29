@@ -46,12 +46,12 @@ sudo apt-get install vim-gnome
 ```
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 ```
-### Install silver-search
+### [Install silver-search](https://github.com/ggreer/the_silver_searcher)
 #### OS X with Homebrew
 ```
 brew install the_silver_searcher
 ```
-#### Linux (Debian-based systems)
+#### Linux (Ubuntu >= 13.10 (Saucy) or Debian >= 8 (Jessie))
 ```
 sudo apt-get install silversearcher-ag
 ```
