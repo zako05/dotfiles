@@ -55,7 +55,7 @@ brew install the_silver_searcher
 ```
 sudo apt-get install silversearcher-ag
 ```
-#### [deprecated] ag.vim - intergration silver-search into vim
+#### [(DEPRECATED) ag.vim - intergration silver-search into vim](https://github.com/rking/ag.vim)
 ```
 cd ~/.vim/bundle && git clone https://github.com/rking/ag.vim ag 
 ```
