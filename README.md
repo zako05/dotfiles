@@ -28,6 +28,11 @@ env RCRC=$HOME/dotfiles/rcrc rcup
 ## [VIM Clipboard](https://bit.ly/2TTyubi)
 Vim has to be compiled with clipboard support for this to work, and many distros come with vim package that does not have this feature.
 ### MacOS
+#### [Install VIM](https://bit.ly/2FUxZVN)
+Install VIM because default VIM that comes with OS X does not have +clipboard enabled
+```
+brew install vim
+```
 You should be good to go.
 ### Linux (debian-based systems, e.g. ubuntu)
 Check the clipboard support of your Vim.

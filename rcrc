@@ -1,3 +1,4 @@
 DOTFILES_DIRS="$HOME/dotfiles"
 EXCLUDES=$HOME/dotfiles:README.dm
 EXCLUDES=$HOME/dotfiles:*.log
+EXCLUDES=$HOME/dotfiles:gitconfig
