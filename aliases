@@ -48,3 +48,6 @@ fi
 
 # vim
 alias vim='/usr/bin/vim'
+
+# stty start undef stop undef
+alias ctags='/usr/local/bin/ctags'
