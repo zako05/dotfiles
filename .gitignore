@@ -1,4 +1,4 @@
 /.bundle
 /.git
-/.swp
+.*.swp
 tags
