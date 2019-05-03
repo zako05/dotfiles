@@ -31,6 +31,11 @@ set softtabstop=2
 set shiftwidth=2
 set expandtab
 
+" linux - copy filename/path to clipboard
+" (https://vim.fandom.com/wiki/Copy_filename_to_clipboard) 
+nmap ,cs :let @+=expand("%")<CR>
+nmap ,cl :let @+=expand("%:p")<CR>
+
 " }}}
 " KEY BINDINGS {{{
 "
