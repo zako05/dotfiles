@@ -50,4 +50,10 @@ fi
 alias vim='/usr/bin/vim'
 
 # stty start undef stop undef
-alias ctags='/usr/local/bin/ctags'
+ctags_current_path=$(which ctags)
+if [ $ctags_current_path == "/usr/bin/ctags" ]
+then
+  alias ctags='/usr/bin/ctags'
+else
+  alias ctags='/usr/local/bin/ctags'
+fi
