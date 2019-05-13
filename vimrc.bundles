@@ -35,6 +35,8 @@ Plugin 'tpope/vim-cucumber'
 Plugin 'mattn/emmet-vim'
 " dash app integration into VIM, only for macOS users
 Plugin 'rizzatti/dash.vim'
+" (todo list)[https://vimawesome.com/plugin/vim-todo-lists]
+Plugin 'aserebryakov/vim-todo-lists'
 
 call vundle#end()
 " call plug#end()
