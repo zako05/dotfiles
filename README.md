@@ -68,15 +68,29 @@ _optional, because it's already part of vimrc_
 ```
 echo “set runtimepath^=~/.vim/bundle/ag.vim" >> ~/.vimrc"
 ```
-### Install ctags
+### ([Install Ctags](https://en.wikipedia.org/wiki/Ctags#Ctags_and_Exuberant_Ctags)
 #### OS X with Homebrew
 ```
 brew install ctags
 alias ctags="`brew -—prefix`/bin/ctags"
 ```
-#### Linux (Debian-based systems)
+#### Linux (Ubuntu >= 13.10 (Saucy) or Debian >= 8 (Jessie))
+[Ctags and Exuberant Ctags](raju.shoutwiki.com/wiki/Difference_between_ctags_and_exuberant_ctags)
+##### [Ctags - format used by Vi.](https://github.com/ggreer/the_silver_searcher#installing)
+```
+apt-get install silversearcher-ag
+```
+##### Exuberant Ctags - format used by Vim.
 ```
 sudo apt-get install exuberant-ctags
+```
+#### Linux (older versions)
+[building ctags from source](https://github.com/ggreer/the_silver_searcher#building-from-source)
+```
+git clone https://github.com/ggreer/the_silver_searcher.git
+apt-get install -y automake pkg-config libpcre3-dev zlib1g-dev liblzma-dev
+./build.sh
+sudo make install
 ```
 ### Install all vim plugins
 #### Install striaght from command line
