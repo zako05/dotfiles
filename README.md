@@ -68,7 +68,7 @@ _optional, because it's already part of vimrc_
 ```
 echo “set runtimepath^=~/.vim/bundle/ag.vim" >> ~/.vimrc"
 ```
-### ([Install Ctags](https://en.wikipedia.org/wiki/Ctags#Ctags_and_Exuberant_Ctags)
+### [Install Ctags](https://en.wikipedia.org/wiki/Ctags#Ctags_and_Exuberant_Ctags)
 #### OS X with Homebrew
 ```
 brew install ctags
