@@ -31,11 +31,6 @@ set softtabstop=2
 set shiftwidth=2
 set expandtab
 
-" linux - copy filename/path to clipboard
-" (https://vim.fandom.com/wiki/Copy_filename_to_clipboard) 
-nmap ,cs :let @+=expand("%")<CR>
-nmap ,cl :let @+=expand("%:p")<CR>
-
 " }}}
 " KEY BINDINGS {{{
 "
@@ -76,12 +71,19 @@ map <Leader>. :CtrlPTag<CR>
 " Index ctags from any project, including those outside Rails
 map <Leader>ct :!ctags -R .<CR>
 
-" Give a shortcut key to NERDTree
-" map <F2> :NERDTreeToggle<CR>
+" linux - copy filename/path to clipboard
+" (https://vim.fandom.com/wiki/Copy_filename_to_clipboard) 
+nmap ,cs :let @+=expand("%")<CR>
+nmap ,cl :let @+=expand("%:p")<CR>
 
 " }}}
 " VISUAL {{{
 "
+
+" Instead to have '# vim:syntax=sh filetype=sh' define per each bash script
+" so lets to define it for different syntax here
+" (https://stackoverflow.com/a/2669295/9822844)
+au BufNewFile,BufRead * if &syntax == '' | set syntax=sh | endif
 
 " vertical line/ruler
 set colorcolumn=80 

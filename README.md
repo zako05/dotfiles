@@ -25,6 +25,12 @@ sudo apt-get install rcm
 env RCRC=$HOME/dotfiles/rcrc rcup
 ```
 # VIM
+#### Update VIM to version 7.4 if VIM version <= 7.3
+NOTE: [The PPA contains the unofficial builds of fresh Vim development versions. Use it at your own risk!](http://ubuntuhandbook.org/index.php/2013/08/upgrade-vim-7-4-ubuntu/)
+```
+sudo add-apt-repository ppa:nmi/vim-snapshots
+sudo apt-get update; sudo apt-get install vim
+```
 ## [VIM Clipboard](https://bit.ly/2TTyubi)
 Vim has to be compiled with clipboard support for this to work, and many distros come with vim package that does not have this feature.
 ### MacOS
