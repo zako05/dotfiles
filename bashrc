@@ -1,3 +1,4 @@
+# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 
 os="$(uname -a)"
@@ -13,5 +14,4 @@ do
   fi
 done
 
-stty start undef stop undef
-alias ctags='/usr/local/bin/ctags'
+. ~/.aliases
