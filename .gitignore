@@ -1,2 +1,5 @@
 /.bundle
 /.git
+/.log
+.*.swp
+tags

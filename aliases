@@ -2,6 +2,8 @@ alias ..="cd .."
 alias ...="cd ../.."
 alias ....="cd ../../.."
 alias l="ls -lF"
+alias ll="ls -alhF"
+alias lt="ls -alhtF"
 alias grep="GREP_COLOR='1;37;44' LANG=C grep --color=auto"
 alias md="mkdir -p"
 
@@ -40,9 +42,18 @@ if [ -f ~/.git-completion.bash ]; then
   . ~/.git-completion.bash
 fi
 
-if [ -f $(brew --prefix)/etc/bash_completion ]; then
-  . $(brew --prefix)/etc/bash_completion
-fi
+#if [ -f $(brew --prefix)/etc/bash_completion ]; then
+#  . $(brew --prefix)/etc/bash_completion
+#fi
 
 # vim
-alias vim='/usr/local/bin/vim'
+alias vim='/usr/bin/vim'
+
+# stty start undef stop undef
+ctags_current_path=$(which ctags)
+if [ $ctags_current_path == "/usr/bin/ctags" ]
+then
+  alias ctags='/usr/bin/ctags'
+else
+  alias ctags='/usr/local/bin/ctags'
+fi

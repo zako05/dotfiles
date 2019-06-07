@@ -1,3 +1,4 @@
-DOTFILES_DIRS="/workspace/dotfiles"
-EXCLUDES=/workspace/dotfiles:README.dm
-EXCLUDES=/workspace/dotfiles:*.log
+DOTFILES_DIRS="$HOME/dotfiles"
+EXCLUDES=$HOME/dotfiles:README.dm
+EXCLUDES=$HOME/dotfiles:*.log
+EXCLUDES=$HOME/dotfiles:gitconfig

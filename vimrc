@@ -5,12 +5,18 @@ if filereadable(expand("~/.vimrc.bundles"))
   source ~/.vimrc.bundles
 endif
 
-set nocompatible        " Use Vim settings, rather then Vi settings
 set encoding=utf-8
-set clipboard+=unnamed  " use system clipboard
-set laststatus=2        " always display status line
-set backspace=2         " fix the problem wiht backspace in vim version 7.4 or higher
-set statusline+=%F      " get the full path of current file ctrl+g
+" Use Vim settings, rather then Vi settings
+set nocompatible 
+" use system clipboard,
+" cross-platform solution https://stackoverflow.com/a/30691753
+set clipboard^=unnamed,unnamedplus
+" always display status line
+set laststatus=2
+" fix the problem wiht backspace in vim version 7.4 or higher
+set backspace=2 
+" get the full path of current file ctrl+g
+set statusline+=%F 
 set number
 
 " set the runtime path to include Vundle and initialize
@@ -34,6 +40,9 @@ nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-h> <C-w>h
 nnoremap <C-l> <C-w>l
+
+" fuzzy search including hidden files
+" let g:ctrlp_show_hidden = 1
 
 " Leader
 let mapleader = " "
@@ -62,12 +71,19 @@ map <Leader>. :CtrlPTag<CR>
 " Index ctags from any project, including those outside Rails
 map <Leader>ct :!ctags -R .<CR>
 
-" Give a shortcut key to NERDTree
-" map <F2> :NERDTreeToggle<CR>
+" linux - copy filename/path to clipboard
+" (https://vim.fandom.com/wiki/Copy_filename_to_clipboard) 
+nmap ,cs :let @+=expand("%")<CR>
+nmap ,cl :let @+=expand("%:p")<CR>
 
 " }}}
 " VISUAL {{{
 "
+
+" Instead to have '# vim:syntax=sh filetype=sh' define per each bash script
+" so lets to define it for different syntax here
+" (https://stackoverflow.com/a/2669295/9822844)
+au BufNewFile,BufRead * if &syntax == '' | set syntax=sh | endif
 
 " vertical line/ruler
 set colorcolumn=80 
@@ -99,7 +115,7 @@ hi ColorColumn ctermbg=238
 " Plugin 'rizzatti/dash.vim'
 " Plugin 'tpope/vim-rails'
 " Plugin 'tpope/vim-bundler'
-" " Plugin 'tpope/vim-cucumber'
+" Plugin 'tpope/vim-cucumber'
 " Plugin 'tpope/vim-surround'
 " Plugin 'tpope/vim-fugitive'
 " Plugin 'tpope/vim-rake'
