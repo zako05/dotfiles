@@ -13,8 +13,18 @@ alias bi="bundle install"
 alias bu="bundle update"
 alias bo="bundle open"
 
+#vagrant
+alias vup="vagrant up"
+alias vupno="vagrant up --no-provision"
+alias vhalt="vagrant halt"
+alias vdes="vagrant destroy -f"
+alias vssh="vagrant ssh"
+
 # rails
 alias r="rails"
+
+#webpack
+alias wp="./bin/webpack-dev-server"
 
 # git
 alias g='git'

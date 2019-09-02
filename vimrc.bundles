@@ -12,6 +12,8 @@ Plugin 'VundleVim/Vundle.vim'
 Plugin 'tomtom/tcomment_vim'
 Plugin 'scrooloose/nerdTree'
 Plugin 'ctrlpvim/ctrlp.vim'
+" https://github.com/szw/vim-tags
+Plugin 'szw/vim-tags'
 " slim syntax highlighting for vim (http://slim-lang.com/)
 " Slim is a very popular template language, using frequently in Ruby on Rails,
 " it has many cool features and borrows a lot from haml (https://bit.ly/2TIxEOT)
