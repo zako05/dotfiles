@@ -35,27 +35,6 @@ set_session () {
       fi
       ;;
   esac
-
-# if [ "$1" == "workspace" ]
-# then
-#   tmux new-window -n beta -t workspace -c /${session[0]}/beta
-#   # tmux split-window -v -t workspace -c $WORKSPACE/beta
-#   # tmux split-window -h -t workspace -c $WORKSPACE/beta
-#   # tmux resize-pane -t 1 -D 10
-# fi
-# if [ "$1" == "rails" ]
-# then
-#   if [ -d "/${session[0]}/$1" ]
-#   then
-#     tmux split-window -v -t rails -c "/${session[0]}/$1"
-#     tmux split-window -h -t rails -c "/${session[0]}/$1"
-#     tmux resize-pane -t 1 -D 10
-#   else
-#     tmux split-window -v -t rails -c /${session[0]}
-#     tmux split-window -h -t rails -c /${session[0]}
-#     tmux resize-pane -t 1 -D 10
-#   fi
-# fi
 }
 
 for s in "${session[@]}"
@@ -76,20 +55,8 @@ do
         fi
         ;;
     esac
-        
-
-    # if [ "$s" == "workspace" ]
-    # then
-    #   tmux new -s $s -n default -c /$s -d
-    # else
-    #   if [ -d ${session[0]}/$s ]
-    #   then
-    #     tmux new -s $s -n default -c "/${session[0]}/$s" -d
-    #   else
-    #     tmux new -s $s -n default -c "/${session[0]}" -d
-    #   fi
-    # fi
     set_session $s
     echo "Session $s has been created successfully."
   fi
 done
+# tmux attach -t workspace
