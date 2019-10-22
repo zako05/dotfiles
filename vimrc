@@ -84,6 +84,8 @@ nmap ,cl :let @+=expand("%:p")<CR>
 " so lets to define it for different syntax here
 " (https://stackoverflow.com/a/2669295/9822844)
 au BufNewFile,BufRead * if &syntax == '' | set syntax=sh | endif
+" ruby syntax for thor files
+au BufNewFile,BufRead *.thor set filetype=ruby
 
 " vertical line/ruler
 set colorcolumn=80 
