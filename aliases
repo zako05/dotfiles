@@ -4,6 +4,7 @@ alias ....="cd ../../.."
 alias l="ls -lF"
 alias ll="ls -alhF"
 alias lt="ls -alhtF"
+alias ld="ls -alhdF *"
 alias grep="GREP_COLOR='1;37;44' LANG=C grep --color=auto"
 alias md="mkdir -p"
 
