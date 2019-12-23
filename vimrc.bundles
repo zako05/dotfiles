@@ -33,6 +33,11 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-rake'
 Plugin 'tpope/vim-eunuch'
 Plugin 'tpope/vim-cucumber'
+" Vim wrapper for running tests on different granularities
+Plugin 'janko/vim-test'
+" JavaScript bundle for vim, this bundle provides syntax highlighting and
+" improved indentation
+Plugin 'pangloss/vim-javascript'
 " improves HTML & CSS workflow (https://emmet.io/)
 Plugin 'mattn/emmet-vim'
 " dash app integration into VIM, only for macOS users
