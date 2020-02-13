@@ -41,18 +41,16 @@ for s in "${session[@]}"
 do
   if get_session $s
   then
-    # echo "Session $s does not exist, so it can be created." 
     case $s in
       workspace)
         tmux new -s $s -n default -c /$s -d
         ;;
       *)
-        if [ -d ${session[0]}/$s ]
+        if [ ! -d "${session[0]}/$s" ]
         then
-          tmux new -s $s -n default -c "/${session[0]}/$s" -d
-        else
-          tmux new -s $s -n default -c "/${session[0]}" -d
+          mkdir /${session[0]}/$s
         fi
+        tmux new -s $s -n default -c "/${session[0]}/$s" -d
         ;;
     esac
     set_session $s
