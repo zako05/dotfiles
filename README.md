@@ -53,9 +53,10 @@ Here is a brief summary of each https://bit.ly/2XSONo2
 sudo apt-get install vim-gnome
 ```
 ## VIM Dependencies
-### Install vundle
+### [Install vim-plug](https://github.com/junegunn/vim-plug)
 ```
-git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 ```
 ### [Install silver-search](https://github.com/ggreer/the_silver_searcher)
 #### OS X with Homebrew
@@ -97,15 +98,6 @@ git clone https://github.com/ggreer/the_silver_searcher.git
 apt-get install -y automake pkg-config libpcre3-dev zlib1g-dev liblzma-dev
 ./build.sh
 sudo make install
-```
-### Install all vim plugins
-#### Install striaght from command line
-```
-vim +PluginInstall +qall
-```
-#### From vim window
-```
-:PluginInstall
 ```
 # TMUX
 ## [TMUX clipboard](https://bit.ly/2F3xQPd)
