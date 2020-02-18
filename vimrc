@@ -43,7 +43,7 @@ set softtabstop=2
 set shiftwidth=2
 set expandtab
 
-set tags=./tags
+set tags=./tags;
 
 " Open new split panes to right and bottom, which feels more natural
 set splitbelow
@@ -65,7 +65,7 @@ nnoremap <C-l> <C-w>l
 let mapleader = " "
 
 " Open :Ex
-map <Leader>f :Explor<CR>
+map <C-w> <esc>:Explore<CR>
 
 " Open vertical :Ex
 map <Leader>v :Vex<CR>
