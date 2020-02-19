@@ -65,31 +65,35 @@ nnoremap <C-l> <C-w>l
 let mapleader = " "
 
 " Open :Ex
-map <C-w> <esc>:Explore<CR>
+" nnoremap <C-s> <esc>:Explore<CR>
+nnoremap <Leader>f :Explore<CR>
+nnoremap <Leader>v :Vexplore<CR>
 
-" Open vertical :Ex
-map <Leader>v :Vex<CR>
+" Fzf
+nnoremap <C-p> :Files<CR>
+nnoremap <Leader>b :Buffers<CR>
+nnoremap <Leader>h :History<CR>
 
-" Search for string patterns inside files
-map <Leader>a :Ag
+" Searching for tags
+nnoremap <Leader>t :BTags<CR>
+nnoremap <Leader>T :Tags<CR>
+
+" Searching for string patterns inside files
+nnoremap <Leader>a :Rg<CR>
 
 " Single file deletion 
-map <Leader>d :call delete(expand('%'))<CR>
+nnoremap <Leader>d :call delete(expand('%'))<CR>
 
 " Rename currently opened file
-map <Leader>n :call RenameFile()<CR>
+nnoremap <Leader>n :call RenameFile()<CR>
 
 " tcomment
-map <Leader>c <c-_><c-_>
+nmap <Leader>c <c-_><c-_>
 
 " quit vim
-map <Leader>q :q<CR>
-
-" fuzzy tag
-map <Leader>. :CtrlPTag<CR>
+nnoremap <Leader>q :q<CR>
 
 " Index ctags from any project, including those outside Rails
-" map <Leader>ct :!ctags -R .<CR>
 noremap <Leader>ct :!ctags -R --exclude=.git --exclude=node_modules --fields=+l .<CR>
 
 " linux - copy filename/path to clipboard

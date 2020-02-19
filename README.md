@@ -52,13 +52,14 @@ Here is a brief summary of each https://bit.ly/2XSONo2
 ```
 sudo apt-get install vim-gnome
 ```
-## VIM Dependencies
+## Dependencies
 ### [Install vim-plug](https://github.com/junegunn/vim-plug)
 ```
 curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 ```
 ### [Install silver-search](https://github.com/ggreer/the_silver_searcher)
+[silver-search installation](https://github.com/ggreer/the_silver_searcher#installing)
 #### OS X with Homebrew
 ```
 brew install the_silver_searcher
@@ -67,27 +68,13 @@ brew install the_silver_searcher
 ```
 sudo apt-get install silversearcher-ag
 ```
-#### [(DEPRECATED) ag.vim - intergration silver-search into vim](https://github.com/rking/ag.vim)
-```
-cd ~/.vim/bundle && git clone https://github.com/rking/ag.vim ag 
-```
-_optional, because it's already part of vimrc_
-```
-echo “set runtimepath^=~/.vim/bundle/ag.vim" >> ~/.vimrc"
-```
-### [Install Ctags](https://en.wikipedia.org/wiki/Ctags#Ctags_and_Exuberant_Ctags)
+### [Install exuberant ctags](https://en.wikipedia.org/wiki/Ctags#Ctags_and_Exuberant_Ctags)
 #### OS X with Homebrew
 ```
 brew install ctags
 alias ctags="`brew -—prefix`/bin/ctags"
 ```
 #### Linux (Ubuntu >= 13.10 (Saucy) or Debian >= 8 (Jessie))
-[Ctags and Exuberant Ctags](raju.shoutwiki.com/wiki/Difference_between_ctags_and_exuberant_ctags)
-##### [Ctags - format used by Vi.](https://github.com/ggreer/the_silver_searcher#installing)
-```
-apt-get install silversearcher-ag
-```
-##### Exuberant Ctags - format used by Vim.
 ```
 sudo apt-get install exuberant-ctags
 ```
@@ -98,6 +85,16 @@ git clone https://github.com/ggreer/the_silver_searcher.git
 apt-get install -y automake pkg-config libpcre3-dev zlib1g-dev liblzma-dev
 ./build.sh
 sudo make install
+```
+[difference between ctags & exuberant ctags](raju.shoutwiki.com/wiki/Difference_between_ctags_and_exuberant_ctags)
+### [Install universal ctags](https://github.com/universal-ctags/ctags/blob/master/docs/osx.rst)
+#### OS X with Homebrew
+```
+brew install --HEAD universal-ctags/universal-ctags/universal-ctags
+```
+#### Linux (Ubuntu >= 13.10 (Saucy) or Debian >= 8 (Jessie))
+```
+sudo snap install universal-ctags
 ```
 # TMUX
 ## [TMUX clipboard](https://bit.ly/2F3xQPd)

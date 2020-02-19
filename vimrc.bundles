@@ -13,9 +13,6 @@ Plug 'junegunn/fzf.vim'
 " bright theme with pastel 'retro groove' colors
 Plug 'morhetz/gruvbox'
 Plug 'tomtom/tcomment_vim'
-Plug 'ctrlpvim/ctrlp.vim'
-" https://github.com/szw/vim-tags
-Plug 'szw/vim-tags'
 " slim syntax highlighting for vim (http://slim-lang.com/)
 " Slim is a very popular template language, using frequently in Ruby on Rails,
 " it has many cool features and borrows a lot from haml (https://bit.ly/2TIxEOT)
@@ -37,7 +34,7 @@ Plug 'tpope/vim-cucumber'
 Plug 'janko/vim-test'
 " JavaScript bundle for vim, this bundle provides syntax highlighting and
 " improved indentation
-Plug 'pangloss/vim-javascript'
+Plug 'sheerun/vim-polyglot'
 Plug 'prettier/vim-prettier'
 " improves HTML & CSS workflow (https://emmet.io/)
 Plug 'mattn/emmet-vim'

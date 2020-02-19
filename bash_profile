@@ -13,10 +13,6 @@ export PATH=~/bin:/usr/local/bin:/usr/local/sbin:/Developer/usr/bin:$PATH
 
 export VISUAL=vim
 export EDITOR="$VISUAL"
-# export EDITOR="mate -w"
-# export SVN_EDITOR="mate -w"
-# export GIT_EDITOR="mate -w"
-# export GEM_EDITOR="mate"
 export HISTCONTROL=erasedups
 export HISTSIZE=100000
 shopt -s histappend
