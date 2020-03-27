@@ -68,6 +68,7 @@ let mapleader = " "
 " nnoremap <C-s> <esc>:Explore<CR>
 nnoremap <Leader>f :Explore<CR>
 nnoremap <Leader>v :Vexplore<CR>
+nnoremap <Leader>s :Sexplore<CR>
 
 " Fzf
 nnoremap <C-p> :Files<CR>
@@ -88,7 +89,7 @@ nnoremap <Leader>d :call delete(expand('%'))<CR>
 nnoremap <Leader>n :call RenameFile()<CR>
 
 " tcomment
-nmap <Leader>c <c-_><c-_>
+map <Leader>c <c-_><c-_>
 
 " quit vim
 nnoremap <Leader>q :q<CR>
