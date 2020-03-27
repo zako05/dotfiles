@@ -55,3 +55,4 @@ fi
 
 # vim
 alias vim='/usr/bin/vim'
+alias vv='/usr/bin/vim --version'
