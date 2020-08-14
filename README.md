@@ -1,6 +1,6 @@
 # Dotfiles
 ## Install rcm
-### OS X with Homebrew
+### MacOS
 ```
 brew tap thoughtbot/formulae
 brew install rcm
@@ -52,33 +52,33 @@ Here is a brief summary of each https://bit.ly/2XSONo2
 ```
 sudo apt-get install vim-gnome
 ```
-## Dependencies
 ### [Install vim-plug](https://github.com/junegunn/vim-plug)
 ```
 curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 ```
-### [Install silver-search](https://github.com/ggreer/the_silver_searcher)
+# Dependencies
+## [Install silver-search](https://github.com/ggreer/the_silver_searcher)
 [silver-search installation](https://github.com/ggreer/the_silver_searcher#installing)
-#### OS X with Homebrew
+### MacOS
 ```
 brew install the_silver_searcher
 ```
-#### Linux (Ubuntu >= 13.10 (Saucy) or Debian >= 8 (Jessie))
+### Linux (Ubuntu >= 13.10 (Saucy) or Debian >= 8 (Jessie))
 ```
 sudo apt-get install silversearcher-ag
 ```
-### [Install exuberant ctags](https://en.wikipedia.org/wiki/Ctags#Ctags_and_Exuberant_Ctags)
-#### OS X with Homebrew
+## [Install exuberant ctags](https://en.wikipedia.org/wiki/Ctags#Ctags_and_Exuberant_Ctags)
+### MacOS
 ```
 brew install ctags
 alias ctags="`brew -—prefix`/bin/ctags"
 ```
-#### Linux (Ubuntu >= 13.10 (Saucy) or Debian >= 8 (Jessie))
+### Linux (Ubuntu >= 13.10 (Saucy) or Debian >= 8 (Jessie))
 ```
 sudo apt-get install exuberant-ctags
 ```
-#### Linux (older versions)
+### Linux (older versions)
 [building ctags from source](https://github.com/ggreer/the_silver_searcher#building-from-source)
 ```
 git clone https://github.com/ggreer/the_silver_searcher.git
@@ -87,12 +87,12 @@ apt-get install -y automake pkg-config libpcre3-dev zlib1g-dev liblzma-dev
 sudo make install
 ```
 [difference between ctags & exuberant ctags](raju.shoutwiki.com/wiki/Difference_between_ctags_and_exuberant_ctags)
-### [Install universal ctags](https://github.com/universal-ctags/ctags/blob/master/docs/osx.rst)
-#### OS X with Homebrew
+## [Install universal ctags](https://github.com/universal-ctags/ctags/blob/master/docs/osx.rst)
+### MacOS
 ```
 brew install --HEAD universal-ctags/universal-ctags/universal-ctags
 ```
-#### Linux (Ubuntu >= 13.10 (Saucy) or Debian >= 8 (Jessie))
+### Linux (Ubuntu >= 13.10 (Saucy) or Debian >= 8 (Jessie))
 ```
 sudo snap install universal-ctags
 ```
@@ -136,7 +136,7 @@ press prefix + I to fetch the plugin
 ```
 # BASH 
 ## Enable bash shell completion by installing bash-completion
-### OS X with Homebrew
+### MacOS
 ```
 brew install bash-completion
 ```
@@ -146,7 +146,7 @@ if [`brew --prefix`/etc/bash_completion ]
   `brew --prefix`/etc/bash_completion
 ```
 ## Install keychain (https://www.funtoo.org/Keychain)
-### OS X with Homebreww
+### MacOS
 ```
 brew install keychain
 ```
