@@ -3,3 +3,5 @@
   email = zako05@gmail.com
 [push]
   default = simple
+[pull]
+	ff = only
