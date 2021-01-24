@@ -2,7 +2,7 @@
 
 # define all session
 # zero session is main work directory
-session=( workspace rails )
+session=( workspace cv)
 
 get_session () {
   get_session_name=$(tmux ls | grep $1 | awk '{print $1}')
@@ -22,15 +22,15 @@ set_session () {
     workspace)
       tmux new-window -n beta -t workspace -c /${session[0]}/beta
       ;;
-    rails)
+    cv)
       if [ -d "/${session[0]}/$1" ]
       then
-        tmux split-window -v -t rails -c "/${session[0]}/$1"
-        tmux split-window -h -t rails -c "/${session[0]}/$1"
+        tmux split-window -v -t cv -c "/${session[0]}/$1"
+        tmux split-window -h -t cv -c "/${session[0]}/$1"
         tmux resize-pane -t 1 -D 10
       else
-        tmux split-window -v -t rails -c /${session[0]}
-        tmux split-window -h -t rails -c /${session[0]}
+        tmux split-window -v -t cv -c /${session[0]}
+        tmux split-window -h -t cv -c /${session[0]}
         tmux resize-pane -t 1 -D 10
       fi
       ;;
