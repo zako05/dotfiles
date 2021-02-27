@@ -1,29 +1,40 @@
 # Dotfiles
+
 ## Install rcm
+
 ### MacOS
+
 ```
 brew tap thoughtbot/formulae
 brew install rcm
 ```
+
 ### Linux (debian-based systems)
+
 ```
 sudo add-apt-repository ppa:martin-frost/thoughtbot-rcm
 ```
+
 or
 
 _this works in most of the cases_
+
 ```
 wget -qO - https://apt.thoughtbot.com/thoughtbot.gpg.key | sudo apt-key add -
 echo "deb http://apt.thoughtbot.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/thoughtbot.list
 ```
+
 ```
 sudo apt-get update
 sudo apt-get install rcm
 ```
+
 ## Install dotfiles
+
 ```
 env RCRC=$HOME/dotfiles/rcrc rcup
 ```
+
 # Dependencies
 ## Universal Ctags
 ### MacOS
@@ -57,9 +68,16 @@ or
 ```bash
 sudo snap install universal-ctags
 ```
+
 ## fzf (command line fuzzy finder)
+
+link: https://github.com/junegunn/fzf#using-git
+
 ```bash
+git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+~/.fzf/install
 ```
+
 ## Ripgrep
 link: https://github.com/BurntSushi/ripgrep#installation
 ### MacOS
