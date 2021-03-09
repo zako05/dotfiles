@@ -124,9 +124,7 @@ function parse_ruby_version {
 export PS1="\[\033[G\]${PURPLE}\$(parse_ruby_version)${GREEN}\w${YELLOW}\$(parse_git_branch)${NONE} "
 export PROMPT_COMMAND='echo -ne "\033]0;$(basename "$(dirname "$PWD")")/$(basename "$PWD")\007"'
 
-source ~/.bashrc
+if [ -e "$HOME/.bashrc" ]; then
+  source "$HOME/.bashrc" 
+fi
 cd .
-
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
-export PATH="/usr/local/opt/curl/bin:$PATH"
-[[ -s "$HOME/.avn/bin/avn.sh" ]] && source "$HOME/.avn/bin/avn.sh" # load avn
