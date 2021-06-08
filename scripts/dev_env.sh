@@ -22,7 +22,11 @@ set_session () {
 # WORKSPACE
 if [ "$1" == "workspace" ]
 then
-  tmux new-window -n beta -t workspace -c $WORKSPACE/beta -d
+  tmux new-window -n articles -t workspace -c $WORKSPACE/article-draft -d
+  tmux new-window -n jsbootcamp -t workspace -c $WORKSPACE/js-bootcamp -d
+  tmux new-window -n cypress -t workspace -c $WORKSPACE/cypress-e2e-tests -d
+  tmux new-window -n realworld-app-vue -t workspace -c $WORKSPACE/realworld-example-app-vue3 -d
+  tmux new-window -n realworld-app-hubstuff -t workspace -c $WORKSPACE/realworld-example-app-hubstuff -d
   # tmux split-window -v -t workspace -c $WORKSPACE/beta
   # tmux split-window -h -t workspace -c $WORKSPACE/beta
   # tmux resize-pane -t 1 -D 10
