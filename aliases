@@ -1,5 +1,11 @@
 alias python=python3
 
+# Unix
+alias tlf="tail -f"
+alias ln="ln -v"
+alias md="mkdir -p"
+alias e="$EDITOR"
+alias v="$VISUAL"
 alias ..="cd .."
 alias ...="cd ../.."
 alias ....="cd ../../.."
@@ -7,29 +13,18 @@ alias l="ls -lF"
 alias ll="ls -alhF"
 alias lt="ls -alhtF"
 alias ld="ls -alhd */"
-alias grep="GREP_COLOR='1;37;44' LANG=C grep --color=auto"
-alias md="mkdir -p"
 
-# bundler
-alias be="bundle exec"
-alias bi="bundle install"
-alias bu="bundle update"
-alias bo="bundle open"
-
-#vagrant
+# Vagrant
 alias vup="vagrant up"
 alias vupno="vagrant up --no-provision"
 alias vhalt="vagrant halt"
 alias vdes="vagrant destroy -f"
 alias vssh="vagrant ssh"
 
-# rails
-alias r="rails"
-
-#webpack
+# Webpack
 alias wp="./bin/webpack-dev-server"
 
-# git
+# Git
 alias g='git'
 for command in a aa au \
                b \
@@ -51,10 +46,6 @@ do
     alias "g$command"="g $command"
 done
 
-if [ -f ~/.git-completion.bash ]; then
-  . ~/.git-completion.bash
-fi
-
-# vim
+# Vim
 alias vim='/usr/bin/vim'
 alias vv='/usr/bin/vim --version'
