@@ -1,9 +1,6 @@
 #!/bin/bash
 
-# main working directory
-WORKSPACE=$HOME/workspace
-# add all sessions you want to create
-session=( workspace )
+session=( workspace vestberry )
 
 get_session () {
   get_session_name=$(tmux ls | grep $1 | awk '{print $1}')
@@ -17,36 +14,29 @@ get_session () {
   fi
 }
 
-# add additional settings for particular session
 set_session () {
-# WORKSPACE
-if [ "$1" == "workspace" ]
-then
-  tmux new-window -n articles -t workspace -c $WORKSPACE/article-draft -d
-  tmux new-window -n jsbootcamp -t workspace -c $WORKSPACE/js-bootcamp -d
-  tmux new-window -n cypress -t workspace -c $WORKSPACE/cypress-e2e-tests -d
-  tmux new-window -n realworld-app-vue -t workspace -c $WORKSPACE/realworld-example-app-vue3 -d
-  tmux new-window -n realworld-app-hubstuff -t workspace -c $WORKSPACE/realworld-example-app-hubstuff -d
-  # tmux split-window -v -t workspace -c $WORKSPACE/beta
-  # tmux split-window -h -t workspace -c $WORKSPACE/beta
-  # tmux resize-pane -t 1 -D 10
-fi
+  workspace=$HOME/$1
+  if [ "$1" == "workspace" ]
+  then
+    tmux new-window -t "${1}:2" -n articles -c "${workspace}/article-draft" -d
+    tmux new-window -t "${1}:3" -n jsbootcamp -c "${workspace}/js-bootcamp" -d \; split-window -t jsbootcamp -h -c "${workspace}/js-bootcamp" 
+  fi
+  if [ "$1" == "vestberry" ]
+  then
+    tmux new-window -t "${1}:2" -n vestberry -c "${workspace}/vestberry" -d
+    tmux new-window -t "${1}:3" -n vs-client-server -c "${workspace}/vestberry" -d \; split-window -t vs-client-server -h -c "${workspace}/vestberry" 
+    tmux new-window -t "${1}:4" -n cypress -c "${workspace}/vestberry/cypress" -d
+    tmux new-window -t "${1}:5" -n cypress-specs -c "${workspace}/vestberry/cypress/integration" -d
+  fi
 }
 
 for s in "${session[@]}"
 do
+  echo "session: ${s}"
   if get_session $s
   then
-    # echo "Session $s does not exist, so it can be created." 
-    if [ "$s" == "workspace" ]
-    then
-      tmux new -s $s -n defualt -c $HOME/$s -d
-      echo "Session $s has been created successfully."
-      set_session $s
-    else
-      tmux new -s $s -n defualt -c $WORKSPACE/$s -d
-      echo "Session $s has been created successfully."
-      set_session $s
-    fi
+    tmux new-session -s $s -n defualt -c  $HOME/$s -d
+    echo "Session $s has been created successfully."
+    set_session $s
   fi
 done
