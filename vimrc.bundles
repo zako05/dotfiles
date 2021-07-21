@@ -4,44 +4,48 @@ end
 
 call plug#begin('~/.vim/bundle')
 
-Plug 'dense-analysis/ale'
-Plug 'easymotion/vim-easymotion'
+" bright theme with pastel 'retro groove' colors
+Plug 'morhetz/gruvbox'
 " fuzzy file search
 Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
-
-" bright theme with pastel 'retro groove' colors
-Plug 'morhetz/gruvbox'
+" unix
+Plug 'tpope/vim-eunuch'
+" (easymotion)[https://github.com/easymotion/vim-easymotion] provides a much simpler way to use some motions
+Plug 'easymotion/vim-easymotion'
+" comment lines easily for different languages
 Plug 'tomtom/tcomment_vim'
-" slim syntax highlighting for vim (http://slim-lang.com/)
-" Slim is a very popular template language, using frequently in Ruby on Rails,
-" it has many cool features and borrows a lot from haml (https://bit.ly/2TIxEOT)
-Plug 'slim-template/vim-slim'
 " shows which lines have been added, modified, or removed
 Plug 'airblade/vim-gitgutter'
 " insert or delete brackets, parens, quotes in pair
 Plug 'jiangmiao/auto-pairs'
-Plug 'vim-ruby/vim-ruby'
-" tim pope's VIM bundles https://github.com/tpope?tab=repositories
-Plug 'tpope/vim-rails'
-Plug 'tpope/vim-bundler'
+" all about surroundings: parenthesesm brackets, quotes, etc.
 Plug 'tpope/vim-surround'
+" git
 Plug 'tpope/vim-fugitive'
-Plug 'tpope/vim-rake'
-Plug 'tpope/vim-eunuch'
-Plug 'tpope/vim-cucumber'
-" Vim wrapper for running tests on different granularities
-Plug 'janko/vim-test'
-" JavaScript bundle for vim, this bundle provides syntax highlighting and
-" improved indentation
-Plug 'sheerun/vim-polyglot'
-Plug 'prettier/vim-prettier'
-" improves HTML & CSS workflow (https://emmet.io/)
+" emmet - improves HTML & CSS workflow (https://emmet.io/)
 Plug 'mattn/emmet-vim'
-" dash app integration into VIM, only for macOS users
-Plug 'rizzatti/dash.vim'
+" vim wrapper for running tests on different granularities
+Plug 'janko/vim-test' " 
 " (todo list)[https://vimawesome.com/plugin/vim-todo-lists]
 Plug 'aserebryakov/vim-todo-lists'
 Plug 'ludovicchabant/vim-gutentags'
+" ---
+" rails development
+" ---
+Plug 'vim-ruby/vim-ruby'
+Plug 'tpope/vim-rails'
+Plug 'tpope/vim-bundler'
+Plug 'tpope/vim-rake'
+" ---
+" javascript development
+" ---
+" syntax highlighting
+Plug 'sheerun/vim-polyglot'
+" asynchronous lint engine - providing linting (syntax checking and semantic errors)
+Plug 'dense-analysis/ale'
+Plug 'prettier/vim-prettier'
+" code completion
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 call plug#end()

@@ -49,6 +49,12 @@ set tags=./tags;
 set splitbelow
 set splitright
 
+" fuzzy search including hidden files
+" let g:ctrlp_show_hidden = 1
+
+" Leader
+let mapleader = " "
+
 " }}}
 " KEY BINDINGS {{{
 "
@@ -57,12 +63,6 @@ nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-h> <C-w>h
 nnoremap <C-l> <C-w>l
-
-" fuzzy search including hidden files
-" let g:ctrlp_show_hidden = 1
-
-" Leader
-let mapleader = " "
 
 " Open :Ex
 " nnoremap <C-s> <esc>:Explore<CR>
@@ -92,7 +92,7 @@ nnoremap <Leader>n :call RenameFile()<CR>
 map <Leader>c <c-_><c-_>
 
 " quit vim
-nnoremap <Leader>q :q<CR>
+nnoremap <Leader>q :q!<CR>
 
 " Index ctags from any project, including those outside Rails
 noremap <Leader>ct :!ctags -R --exclude=.git --exclude=node_modules --fields=+l .<CR>
@@ -101,6 +101,13 @@ noremap <Leader>ct :!ctags -R --exclude=.git --exclude=node_modules --fields=+l 
 " (https://vim.fandom.com/wiki/Copy_filename_to_clipboard) 
 nmap ,cs :let @+=expand("%")<CR>
 nmap ,cl :let @+=expand("%:p")<CR>
+
+" jump between linting errors
+nmap <silent> [c <Plug>(ale_previous_wrap)
+nmap <silent> ]c <Plug>(ale_next_wrap)
+
+" format js code on demand
+nmap <Leader>i <Plug>(ale_fix)
 
 " }}}
 " VISUAL {{{
@@ -124,6 +131,16 @@ filetype plugin indent on    " required
 let g:netrw_banner = 0
 let g:netrw_browse_split = 0
 
+" linting error indicators
+let g:ale_sign_error = '❌'
+let g:ale_sign_warning = '⚠️'
+" [initiate variable with empty object first](https://bit.ly/3iwwtwj) 
+let g:ale_fixers = {}
+let g:ale_fixers['javascript'] = ['eslint']
+
+
+" Fix files automatically on save
+let g:ale_fix_on_save = 1
 
 " }}}
 " FUNCTIONS {{{
