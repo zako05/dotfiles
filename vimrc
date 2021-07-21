@@ -29,11 +29,11 @@ set backspace=2
 " get the full path of current file ctrl+g
 set statusline+=%F 
 
-" set number
+set number
 
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/gruvbox
-set runtimepath^=~/.vim/bundle/ctrlp.vim
+
 " ag integration into Vim
 set runtimepath^=~/.vim/bundle/ag 
 

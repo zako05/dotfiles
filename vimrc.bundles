@@ -4,11 +4,18 @@ end
 
 call plug#begin('~/.vim/bundle')
 
+" color schema & syntax highlighting
+" -----
 " bright theme with pastel 'retro groove' colors
 Plug 'morhetz/gruvbox'
+" syntax highlighting
+Plug 'sheerun/vim-polyglot'
+
 " fuzzy file search
 Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
+" tags
+Plug 'ludovicchabant/vim-gutentags'
 " unix
 Plug 'tpope/vim-eunuch'
 " (easymotion)[https://github.com/easymotion/vim-easymotion] provides a much simpler way to use some motions
@@ -29,22 +36,19 @@ Plug 'mattn/emmet-vim'
 Plug 'janko/vim-test' " 
 " (todo list)[https://vimawesome.com/plugin/vim-todo-lists]
 Plug 'aserebryakov/vim-todo-lists'
-Plug 'ludovicchabant/vim-gutentags'
-" ---
+
 " rails development
-" ---
+" -----
 Plug 'vim-ruby/vim-ruby'
 Plug 'tpope/vim-rails'
 Plug 'tpope/vim-bundler'
 Plug 'tpope/vim-rake'
-" ---
+
 " javascript development
-" ---
-" syntax highlighting
-Plug 'sheerun/vim-polyglot'
+" -----
+Plug 'prettier/vim-prettier'
 " asynchronous lint engine - providing linting (syntax checking and semantic errors)
 Plug 'dense-analysis/ale'
-Plug 'prettier/vim-prettier'
 " code completion
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
