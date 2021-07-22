@@ -1,5 +1,9 @@
 alias python=python3
 
+# Vim
+alias vim='/usr/bin/vim'
+alias vv='/usr/bin/vim --version'
+
 # Unix
 alias tlf="tail -f"
 alias ln="ln -v"
@@ -13,16 +17,6 @@ alias l="ls -lF"
 alias ll="ls -alhF"
 alias lt="ls -alhtF"
 alias ld="ls -alhd */"
-
-# Vagrant
-alias vup="vagrant up"
-alias vupno="vagrant up --no-provision"
-alias vhalt="vagrant halt"
-alias vdes="vagrant destroy -f"
-alias vssh="vagrant ssh"
-
-# Webpack
-alias wp="./bin/webpack-dev-server"
 
 # Git
 alias g='git'
@@ -46,6 +40,12 @@ do
     alias "g$command"="g $command"
 done
 
-# Vim
-alias vim='/usr/bin/vim'
-alias vv='/usr/bin/vim --version'
+# Vagrant
+alias vup="vagrant up"
+alias vupno="vagrant up --no-provision"
+alias vhalt="vagrant halt"
+alias vdes="vagrant destroy -f"
+alias vssh="vagrant ssh"
+
+# Webpack
+alias wp="./bin/webpack-dev-server"
