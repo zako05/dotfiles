@@ -1,10 +1,10 @@
 #!/bin/bash
 
-session=( workspace vestberry )
+session=(workspace vestberry)
 
 get_session () {
   get_session_name=$(tmux ls | grep $1 | awk '{print $1}')
-  if [ "$get_session_name" != "$1:" ]
+  if [ "$get_session_name" != $1: ]
   then
     echo "Session $1 does not exist."
     return 0
@@ -32,10 +32,9 @@ set_session () {
 
 for s in "${session[@]}"
 do
-  echo "session: ${s}"
   if get_session $s
   then
-    tmux new-session -s $s -n defualt -c  $HOME/$s -d
+    tmux new-session -s $s -n default -c  $HOME/$s -d
     echo "Session $s has been created successfully."
     set_session $s
   fi
