@@ -34,9 +34,6 @@ set number
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/gruvbox
 
-" ag integration into Vim
-set runtimepath^=~/.vim/bundle/ag 
-
 " Tabs and spaces
 set tabstop=2
 set softtabstop=2
@@ -50,7 +47,7 @@ set splitbelow
 set splitright
 
 " fuzzy search including hidden files
-" let g:ctrlp_show_hidden = 1
+" let g:ctrlp_show_hidden = 2
 
 " Leader
 let mapleader = " "
