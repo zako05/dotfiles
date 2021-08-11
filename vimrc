@@ -110,7 +110,8 @@ nmap <Leader>i <Plug>(ale_fix)
 " VISUAL {{{
 "
 " vertical line/ruler
-set colorcolumn=80 
+" set colorcolumn=80 
+set colorcolumn=120
 
 " show the cursor position all the time
 set ruler
