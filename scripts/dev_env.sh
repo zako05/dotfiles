@@ -4,7 +4,7 @@ session=(workspace vestberry)
 
 get_session () {
   get_session_name=$(tmux ls | grep $1 | awk '{print $1}')
-  if [ "$get_session_name" != $1: ]
+  if [ "$get_session_name" != "$1:" ]
   then
     echo "Session $1 does not exist."
     return 0
@@ -16,12 +16,12 @@ get_session () {
 
 set_session () {
   workspace=$HOME/$1
-  if [ "$1" == "workspace" ]
+  if [[ "$1" == "workspace" ]] 
   then
     tmux new-window -t "${1}:2" -n articles -c "${workspace}/article-draft" -d
     tmux new-window -t "${1}:3" -n jsbootcamp -c "${workspace}/js-bootcamp" -d \; split-window -t jsbootcamp -h -c "${workspace}/js-bootcamp" 
   fi
-  if [ "$1" == "vestberry" ]
+  if [[ "$1" == "vestberry" ]] 
   then
     tmux new-window -t "${1}:2" -n vestberry -c "${workspace}/vestberry" -d
     tmux new-window -t "${1}:3" -n vs-client-server -c "${workspace}/vestberry" -d \; split-window -t vs-client-server -h -c "${workspace}/vestberry" 
