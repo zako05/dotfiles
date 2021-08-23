@@ -89,7 +89,7 @@ nnoremap <Leader>n :call RenameFile()<CR>
 map <Leader>c <c-_><c-_>
 
 " quit vim
-nnoremap <Leader>q :q!<CR>
+nnoremap <Leader>q :q<CR>
 
 " Index ctags from any project, including those outside Rails
 noremap <Leader>ct :!ctags -R --exclude=.git --exclude=node_modules --fields=+l .<CR>
