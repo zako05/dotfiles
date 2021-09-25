@@ -15,10 +15,8 @@ set encoding=utf-8
 " Use Vim settings, rather then Vi settings
 set nocompatible 
 
-" use system clipboard,
-" cross-platform solution https://stackoverflow.com/a/30691753
-" set clipboard^=unnamed,unnamedplus
-set clipboard=unnamedplus
+" use system clipboard
+set clipboard=unnamed
 
 " always display status line
 set laststatus=2
