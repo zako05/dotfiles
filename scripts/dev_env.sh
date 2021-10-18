@@ -25,8 +25,8 @@ set_session () {
   then
     tmux new-window -t "${1}:2" -n vestberry -c "${workspace}/vestberry" -d
     tmux new-window -t "${1}:3" -n vs-client-server -c "${workspace}/vestberry" -d \; split-window -t vs-client-server -h -c "${workspace}/vestberry" 
-    tmux new-window -t "${1}:4" -n cypress -c "${workspace}/vestberry/cypress" -d
-    tmux new-window -t "${1}:5" -n cypress-specs -c "${workspace}/vestberry/cypress/integration" -d
+    tmux new-window -t "${1}:4" -n cypress-run -c "${workspace}/vestberry" -d
+    tmux new-window -t "${1}:5" -n cypress-specs -c "${workspace}/vestberry" -d \; split-window -t cypress-specs -h -c "${workspace}/vestberry"
   fi
 }
 
