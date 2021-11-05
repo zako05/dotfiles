@@ -115,8 +115,13 @@ set colorcolumn=120
 set ruler
 
 " Color scheme
+" The \":syntax enable\" command will keep your current color settings.
+" This allows using \":highlight\" commands to set your preferred colors before or after using this command.
+" If you want Vim to overrule your settings with the defaults, use: > \":syntax on\"
 syntax enable
 " syntax on
+" \"'redrawtime' exceeded, syntax highlighting disabled\" https://jameschambers.co.uk/vim-typescript-slow
+set re=0
 colorscheme gruvbox
 let g:gruvbox_contrast_dark='hard'
 set background=dark
