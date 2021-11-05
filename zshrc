@@ -1,6 +1,9 @@
 # automatically enter directories without cd
 setopt auto_cd
 
+# autocomplition
+autoload -Uz compinit && compinit
+
 # makes color constants available
 autoload -U colors
 colors
