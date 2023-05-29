@@ -1,6 +1,6 @@
-# Dotfiles
+# DOTFILES
 
-# Install dotfiles via RCM
+## RCM
 
 'rc' (as in '.zshrc') = RunCom
 'rcm' = RunCom management
@@ -18,9 +18,9 @@ run 'rcup' to install/update dotfiles
 env RCRC=$HOME/dotfiles/rcrc rcup
 ```
 
-# Dotfile dependencies
+## Dotfile dependencies
 
-## Universal Ctags
+### Universal Ctags
 
 links:
 https://ctags.io/
@@ -32,7 +32,7 @@ brew tap universal-ctags/universal-ctags
 brew install --HEAD universal-ctags
 ```
 
-## FZF (command line fuzzy finder)
+### FZF (command line fuzzy finder)
 
 link: https://github.com/junegunn/fzf#using-git
 
@@ -41,7 +41,7 @@ git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 ~/.fzf/install
 ```
 
-## Ripgrep (rg)
+### Ripgrep (rg)
 
 link: https://github.com/BurntSushi/ripgrep#installation
 
@@ -88,28 +88,24 @@ sudo add-apt-repository ppa:nmi/vim-snapshots
 sudo apt-get update; sudo apt-get install vim
 ```
 
-## [VIM Clipboard](https://bit.ly/2TTyubi)
+## [vim clipboard](https://bit.ly/2TTyubi)
 
 Vim has to be compiled with clipboard support for this to work, and many distros come with vim package that does not have this feature.
-
-### MacOS
-
-#### [Install VIM](https://bit.ly/2FUxZVN)
-
-Install VIM because default VIM that comes with OS X does not have +clipboard enabled
 
 ```zsh
 brew install vim
 ```
 
-### [Install vim-plug](https://github.com/junegunn/vim-plug)
+Default VIM that comes with OS X does not have +clipboard enabled
+
+### [vim-plug](https://github.com/junegunn/vim-plug)
 
 ```zsh
 curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 ```
 
-# zsh
+# ZSH
 
 link: https://zsh.sourceforge.io/Intro/intro_3.html
 
