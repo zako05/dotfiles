@@ -16,7 +16,7 @@ Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
 " tags
 Plug 'ludovicchabant/vim-gutentags'
-" unix
+" Vim sugar for the UNIX shell commands
 Plug 'tpope/vim-eunuch'
 " (easymotion)[https://github.com/easymotion/vim-easymotion] provides a much simpler way to use some motions
 Plug 'easymotion/vim-easymotion'
@@ -30,10 +30,6 @@ Plug 'jiangmiao/auto-pairs'
 Plug 'tpope/vim-surround'
 " git
 Plug 'tpope/vim-fugitive'
-" emmet - improves HTML & CSS workflow (https://emmet.io/)
-Plug 'mattn/emmet-vim'
-" vim wrapper for running tests on different granularities
-Plug 'janko/vim-test' " 
 " (todo list)[https://vimawesome.com/plugin/vim-todo-lists]
 Plug 'aserebryakov/vim-todo-lists'
 
@@ -44,12 +40,19 @@ Plug 'tpope/vim-rails'
 Plug 'tpope/vim-bundler'
 Plug 'tpope/vim-rake'
 
-" javascript development
+" web development
 " -----
+" emmet - improves HTML & CSS workflow (https://emmet.io/)
+Plug 'mattn/emmet-vim'
 Plug 'prettier/vim-prettier'
 " asynchronous lint engine - providing linting (syntax checking and semantic errors)
 Plug 'dense-analysis/ale'
 " code completion
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+
+" testing
+" -----
+" vim wrapper for running tests on different granularities
+Plug 'janko/vim-test' " 
 
 call plug#end()

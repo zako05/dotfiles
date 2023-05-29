@@ -1,8 +1,8 @@
 alias python=python3
 
 # Vim
-alias vim='/usr/bin/vim'
-alias vv='/usr/bin/vim --version'
+alias vim='/usr/local/bin/vim'
+alias vv='/usr/local/bin/vim --version'
 
 # Unix
 alias tlf="tail -f"
