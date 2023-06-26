@@ -9,8 +9,7 @@ alias tlf="tail -f"
 alias ln="ln -v"
 alias md="mkdir -p"
 alias e="$EDITOR"
-alias v="$VISUAL"
-alias ..="cd .."
+alias v="$VISUAL" alias ..="cd .."
 alias ...="cd ../.."
 alias ....="cd ../../.."
 alias l="ls -lF"
@@ -44,12 +43,12 @@ done
 alias ta='tmux attach -t'
 alias tl='tmux list-sessions'
 
+# ripgrep
+alias rgf='rg --files | rg'
+
 # Vagrant
 alias vup="vagrant up"
 alias vupno="vagrant up --no-provision"
 alias vhalt="vagrant halt"
 alias vdes="vagrant destroy -f"
 alias vssh="vagrant ssh"
-
-# Webpack
-alias wp="./bin/webpack-dev-server"
