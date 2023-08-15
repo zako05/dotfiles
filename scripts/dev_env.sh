@@ -36,7 +36,7 @@ set_session () {
     tmux new-window -t $1:6 -n cy-tips -c "${workspace}/cypress-tips" -d \; split-window -t cy-tips -h -c "${workspace}/cypress-tips" 
     tmux new-window -t $1:7 -n 10-days-of-js -c "${workspace}/10-days-of-js" -d \; split-window -t 10-days-of-js -h -c "${workspace}/10-days-of-js" 
     tmux new-window -t $1:8 -n vue-realworld-example -c "${workspace}/vue3-realworld-example-app" -d \; split-window -t vue-realworld-example -h -c "${workspace}/vue3-realworld-example-app" 
-    tmux new-window -t $1:9 -n instea -c "${workspace}/todos" -d
+    tmux new-window -t $1:9 -n todos -c "${workspace}/todos" -d
     no_window_zero $1
   fi
   if [[ "$1" == "instea" ]] 
