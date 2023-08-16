@@ -158,8 +158,5 @@ endfunction
 " so lets to define it for different syntax here
 " (https://stackoverflow.com/a/2669295/9822844)
 au BufNewFile,BufRead * if &syntax == '' | set syntax=sh | endif
-au BufNewFile,BufRead *.md set filetype=markdown
-" Enable spellchecking for Markdown
-au BufRead,BufNewFile *.md setlocal spell
 " Automatically wrap at 80 characters for Markdown
-au BufRead,BufNewFile *.md setlocal textwidth=80"
+au BufRead,BufNewFile *.md setlocal textwidth=120"
