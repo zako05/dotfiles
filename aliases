@@ -1,35 +1,23 @@
 alias python=python3
 
-alias ..="cd .."
+# Vim
+alias vim='/usr/local/bin/vim'
+alias vv='/usr/local/bin/vim --version'
+
+# Unix
+alias tlf="tail -f"
+alias ln="ln -v"
+alias md="mkdir -p"
+alias e="$EDITOR"
+alias v="$VISUAL" alias ..="cd .."
 alias ...="cd ../.."
 alias ....="cd ../../.."
 alias l="ls -lF"
 alias ll="ls -alhF"
 alias lt="ls -alhtF"
 alias ld="ls -alhd */"
-alias grep="GREP_COLOR='1;37;44' LANG=C grep --color=auto"
-alias md="mkdir -p"
 
-# bundler
-alias be="bundle exec"
-alias bi="bundle install"
-alias bu="bundle update"
-alias bo="bundle open"
-
-#vagrant
-alias vup="vagrant up"
-alias vupno="vagrant up --no-provision"
-alias vhalt="vagrant halt"
-alias vdes="vagrant destroy -f"
-alias vssh="vagrant ssh"
-
-# rails
-alias r="rails"
-
-#webpack
-alias wp="./bin/webpack-dev-server"
-
-# git
+# Git
 alias g='git'
 for command in a aa au \
                b \
@@ -51,10 +39,24 @@ do
     alias "g$command"="g $command"
 done
 
-if [ -f ~/.git-completion.bash ]; then
-  . ~/.git-completion.bash
-fi
+# tmux
+alias ta='tmux attach -t'
+alias tn='tmux new-sessoin'
+alias tl='tmux list-sessions'
+alias tk='tmux kill-server'
 
-# vim
-alias vim='/usr/bin/vim'
-alias vv='/usr/bin/vim --version'
+# ripgrep
+alias rgf='rg --files | rg'
+
+# Go
+alias go='/usr/local/go/bin/go'
+
+# K6
+alias xk6='$HOME/go/bin/xk6'
+
+# Vagrant
+alias vup="vagrant up"
+alias vupno="vagrant up --no-provision"
+alias vhalt="vagrant halt"
+alias vdes="vagrant destroy -f"
+alias vssh="vagrant ssh"

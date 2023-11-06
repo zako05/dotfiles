@@ -15,10 +15,8 @@ set encoding=utf-8
 " Use Vim settings, rather then Vi settings
 set nocompatible 
 
-" use system clipboard,
-" cross-platform solution https://stackoverflow.com/a/30691753
-" set clipboard^=unnamed,unnamedplus
-set clipboard=unnamedplus
+" use system clipboard
+set clipboard=unnamed
 
 " always display status line
 set laststatus=2
@@ -29,25 +27,26 @@ set backspace=2
 " get the full path of current file ctrl+g
 set statusline+=%F 
 
-" set number
-
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/gruvbox
-set runtimepath^=~/.vim/bundle/ctrlp.vim
-" ag integration into Vim
-set runtimepath^=~/.vim/bundle/ag 
 
 " Tabs and spaces
 set tabstop=2
-set softtabstop=2
+set softtabstop=0
 set shiftwidth=2
 set expandtab
-
-set tags=./tags;
 
 " Open new split panes to right and bottom, which feels more natural
 set splitbelow
 set splitright
+
+set tags=./tags
+
+" Indents based on file type, eg. type '>>' to shift 2 spaces
+filetype plugin indent on
+
+" Leader
+let mapleader = " "
 
 " }}}
 " KEY BINDINGS {{{
@@ -58,21 +57,14 @@ nnoremap <C-k> <C-w>k
 nnoremap <C-h> <C-w>h
 nnoremap <C-l> <C-w>l
 
-" fuzzy search including hidden files
-" let g:ctrlp_show_hidden = 1
-
-" Leader
-let mapleader = " "
+" Fzf
+nnoremap <silent> <C-p> :Files<CR>
+nnoremap <silent> <C-o> :Buffers<CR>
 
 " Open :Ex
-" nnoremap <C-s> <esc>:Explore<CR>
 nnoremap <Leader>f :Explore<CR>
 nnoremap <Leader>v :Vexplore<CR>
 nnoremap <Leader>s :Sexplore<CR>
-
-" Fzf
-nnoremap <C-p> :Files<CR>
-nnoremap <Leader>b :Buffers<CR>
 nnoremap <Leader>h :History<CR>
 
 " Searching for tags
@@ -81,9 +73,6 @@ nnoremap <Leader>T :Tags<CR>
 
 " Searching for string patterns inside files
 nnoremap <Leader>a :Rg<CR>
-
-" Single file deletion 
-nnoremap <Leader>d :call delete(expand('%'))<CR>
 
 " Rename currently opened file
 nnoremap <Leader>n :call RenameFile()<CR>
@@ -94,7 +83,7 @@ map <Leader>c <c-_><c-_>
 " quit vim
 nnoremap <Leader>q :q<CR>
 
-" Index ctags from any project, including those outside Rails
+" Index ctags from any project
 noremap <Leader>ct :!ctags -R --exclude=.git --exclude=node_modules --fields=+l .<CR>
 
 " linux - copy filename/path to clipboard
@@ -102,28 +91,51 @@ noremap <Leader>ct :!ctags -R --exclude=.git --exclude=node_modules --fields=+l 
 nmap ,cs :let @+=expand("%")<CR>
 nmap ,cl :let @+=expand("%:p")<CR>
 
+" jump between linting errors
+nmap <silent> [c <Plug>(ale_previous_wrap)
+nmap <silent> ]c <Plug>(ale_next_wrap)
+
+"Use <Tab> and <S-Tab> to navigate the completion list
+inoremap <expr> <Tab> coc#pum#visible() ? coc#pum#next(1) : "\<Tab>"
+inoremap <expr> <S-Tab> coc#pum#visible() ? coc#pum#prev(1) : "\<S-Tab>"
+
+" format js code on demand
+nmap <Leader>i <Plug>(ale_fix)
+
 " }}}
 " VISUAL {{{
 "
 " vertical line/ruler
-set colorcolumn=80 
+set colorcolumn=120
 
 " show the cursor position all the time
 set ruler
 
 " Color scheme
+" The \":syntax enable\" command will keep your current color settings.
+" This allows using \":highlight\" commands to set your preferred colors before or after using this command.
+" If you want Vim to overrule your settings with the defaults, use: > \":syntax on\"
 syntax enable
-" syntax on
+"https:/jameschambers.co.uk/vim-typescript-slow
+set re=0
 colorscheme gruvbox
 let g:gruvbox_contrast_dark='hard'
 set background=dark
 hi ColorColumn ctermbg=238
-filetype plugin indent on    " required
 
 " NETRW config
 let g:netrw_banner = 0
 let g:netrw_browse_split = 0
 
+" linting error indicators
+let g:ale_sign_error = '❌'
+let g:ale_sign_warning = '⚠️'
+" [initiate variable with empty object first](https://bit.ly/3iwwtwj) 
+let g:ale_fixers = {}
+let g:ale_fixers['javascript'] = ['eslint']
+
+" Fix files automatically on save
+let g:ale_fix_on_save = 1
 
 " }}}
 " FUNCTIONS {{{
@@ -146,9 +158,6 @@ endfunction
 " so lets to define it for different syntax here
 " (https://stackoverflow.com/a/2669295/9822844)
 au BufNewFile,BufRead * if &syntax == '' | set syntax=sh | endif
-au BufNewFile,BufRead *.thor set filetype=ruby
-au BufNewFile,BufRead *.md set filetype=markdown
-" Enable spellchecking for Markdown
-au BufRead,BufNewFile *.md setlocal spell
 " Automatically wrap at 80 characters for Markdown
-au BufRead,BufNewFile *.md setlocal textwidth=80"
+au BufRead,BufNewFile *.md setlocal textwidth=120"
+let vim_markdown_preview_hotkey='<C-m>'
