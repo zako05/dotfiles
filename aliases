@@ -48,6 +48,12 @@ alias tk='tmux kill-server'
 # ripgrep
 alias rgf='rg --files | rg'
 
+# Go
+alias go='/usr/local/go/bin/go'
+
+# K6
+alias xk6='$HOME/go/bin/xk6'
+
 # Vagrant
 alias vup="vagrant up"
 alias vupno="vagrant up --no-provision"

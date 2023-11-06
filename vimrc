@@ -32,7 +32,7 @@ set rtp+=~/.vim/bundle/gruvbox
 
 " Tabs and spaces
 set tabstop=2
-set softtabstop=2
+set softtabstop=0
 set shiftwidth=2
 set expandtab
 
@@ -160,3 +160,4 @@ endfunction
 au BufNewFile,BufRead * if &syntax == '' | set syntax=sh | endif
 " Automatically wrap at 80 characters for Markdown
 au BufRead,BufNewFile *.md setlocal textwidth=120"
+let vim_markdown_preview_hotkey='<C-m>'

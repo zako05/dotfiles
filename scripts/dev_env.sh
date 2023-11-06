@@ -24,7 +24,7 @@ set_session () {
   workspace=$HOME/$1
   if [[ "$1" == "workspace" ]] 
   then
-    tmux new-window -t $1:1 -n articles -c "${workspace}/article-draft" -d
+    tmux new-window -t $1:1 -n dotfiles -c "dotfiles" -d
     tmux new-window -t $1:2 -n vitepress-articles -c "${workspace}/vitepress-articles" -d
     tmux new-window -t $1:3 -n jsbootcamp -c "${workspace}/js-bootcamp" -d
       tmux split-window -t jsbootcamp -h -c "${workspace}/js-bootcamp" 
@@ -42,7 +42,20 @@ set_session () {
   if [[ "$1" == "instea" ]] 
   then
     tmux new-window -t $1:1 -n instea -c "${workspace}" -d
-    tmux new-window -t $1:2 -n quick -c "${workspace}/quick" -d
+    tmux new-window -t $1:2 -n quick -c "${workspace}/quick/quick-online-v2" -d
+      tmux split-window -t quick -h -c "${workspace}/quick/quick-online-v2"
+      tmux split-window -t quick -c "${workspace}/quick/quick-online-v2"
+    tmux new-window -t $1:3 -n quick-dd -c "${workspace}/quick/quick-driver-dispatch/src/app" -d
+      tmux send-keys -t quick-dd "nvm use 16 && yarn start" enter
+      tmux split-window -t quick-dd -v -c "${workspace}/quick/quick-driver-dispatch/src/api"
+        tmux send-keys -t quick-dd "nvm use 16 && yarn start" enter
+      tmux split-window -t quick-dd -h -c "${workspace}/quick/quick-driver-dispatch/test/quick-test-app"
+        tmux send-keys -t quick-dd "nvm use 16 && PORT=3001 yarn start" enter
+      tmux split-window -t quick-dd -v -c "${workspace}/quick/quick-driver-dispatch"
+        tmux send-keys -t quick-dd "docker-compose -f docker-compose-local.yml up" enter
+      tmux split-window -t quick-dd -v -c "${workspace}/quick/quick-driver-dispatch"
+    tmux select-layout -t quick-dd tiled
+    tmux new-window -t $1:4 -n quick-dd-k6 -c "${workspace}/quick/quick-driver-dispatch/src/api/test/k6" -d
     no_window_zero $1
   fi
 }
