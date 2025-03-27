@@ -1,38 +1,43 @@
-# automatically enter directories without cd
+# Automatically enter directories without cd
 setopt auto_cd
 
-# autocomplition
+# Autocomplition
 autoload -Uz compinit && compinit
 
-# makes color constants available
+# Makes color constants available
 autoload -U colors
 colors
 
-# enable colored output from ls, etc. on FreeBSD-based systems
+# Enable colored output from ls, etc. on FreeBSD-based systems
 export CLICOLOR=1
 
-# aliases
+# Aliases
 if [ -e "$HOME/.aliases" ]; then
   source "$HOME/.aliases"
 fi
 
-# expand functions in the prompt
+# Toggle proxy
+if [ -e "$HOME/.scripts/proxy.zsh" ]; then
+  source "$HOME/.scripts/proxy.zsh"
+fi
+
+# Expand functions in the prompt
 setopt prompt_subst
 
-# stop asking for confirmation for `rm *' or `rm path/*''`'`
+# Stop asking for confirmation for `rm *' or `rm path/*''`'`
 setopt rm_star_silent         
 
-# prompt
+# Prompt
 export PS1='[${SSH_CONNECTION+"%n@%m:"}%~] '
 
-# ignore duplicate history entries
+# Ignore duplicate history entries
 setopt histignoredups
 
-# automatically pushd
+# Automatically pushd
 setopt auto_pushd
 export dirstacksize=5
 
-# keep TONS of history
+# Keep TONS of history
 export HISTSIZE=4096
 
 # Try not to correct command line spelling
@@ -42,7 +47,8 @@ unsetopt CORRECT_ALL
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # Load ASDF
-. $(brew --prefix asdf)/libexec/asdf.sh
+# . $(brew --prefix asdf)/libexec/asdf.sh
+. $(brew --prefix asdf)
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
