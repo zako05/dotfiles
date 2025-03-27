@@ -60,3 +60,6 @@ alias vupno="vagrant up --no-provision"
 alias vhalt="vagrant halt"
 alias vdes="vagrant destroy -f"
 alias vssh="vagrant ssh"
+
+# Toggle proxy
+alias proxy="toggle_proxy"
