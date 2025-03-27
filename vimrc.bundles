@@ -7,7 +7,10 @@ call plug#begin('~/.vim/bundle')
 " color schema & syntax highlighting
 " -----
 " bright theme with pastel 'retro groove' colors
-Plug 'morhetz/gruvbox'
+" Plug 'morhetz/gruvbox'
+
+" light & dark theme vscode colors
+Plug 'tomasiser/vim-code-dark'
 " syntax highlighting
 Plug 'sheerun/vim-polyglot'
 

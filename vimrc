@@ -115,11 +115,19 @@ set ruler
 " The \":syntax enable\" command will keep your current color settings.
 " This allows using \":highlight\" commands to set your preferred colors before or after using this command.
 " If you want Vim to overrule your settings with the defaults, use: > \":syntax on\"
-syntax enable
-"https:/jameschambers.co.uk/vim-typescript-slow
+syntax on
+
+" use new regular expression engine (https://jameschambers.co.uk/vim-typescript-slow)
 set re=0
-colorscheme gruvbox
-let g:gruvbox_contrast_dark='hard'
+
+" theme: vim-code-dark
+let g:codedark_modern=1
+colorscheme codedark
+
+" them: gruvebox
+" let g:gruvbox_contrast_dark='hard'
+" colorscheme gruvbox
+
 set background=dark
 hi ColorColumn ctermbg=238
 
