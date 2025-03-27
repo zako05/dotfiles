@@ -1,6 +1,7 @@
 [user]
 	name = Michal Zak
-  email = zako05@gmail.com
+	email = zako05@gmail.com
+	username = zako05
 [push]
   default = simple
 [pull]
