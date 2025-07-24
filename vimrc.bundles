@@ -2,6 +2,8 @@ if &compatible
   set nocompatible
 end
 
+let g:polyglot_disabled = ['markdown']
+
 call plug#begin('~/.vim/bundle')
 
 " color schema & syntax highlighting
