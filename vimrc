@@ -91,16 +91,9 @@ noremap <Leader>ct :!ctags -R --exclude=.git --exclude=node_modules --fields=+l 
 nmap ,cs :let @+=expand("%")<CR>
 nmap ,cl :let @+=expand("%:p")<CR>
 
-" jump between linting errors
-nmap <silent> [c <Plug>(ale_previous_wrap)
-nmap <silent> ]c <Plug>(ale_next_wrap)
-
 "Use <Tab> and <S-Tab> to navigate the completion list
 inoremap <expr> <Tab> coc#pum#visible() ? coc#pum#next(1) : "\<Tab>"
 inoremap <expr> <S-Tab> coc#pum#visible() ? coc#pum#prev(1) : "\<S-Tab>"
-
-" format js code on demand
-nmap <Leader>i <Plug>(ale_fix)
 
 " }}}
 " VISUAL {{{
@@ -135,37 +128,9 @@ hi ColorColumn ctermbg=238
 let g:netrw_banner = 0
 let g:netrw_browse_split = 0
 
-" linting error indicators
-let g:ale_sign_error = '❌'
-let g:ale_sign_warning = '⚠️'
-" [initiate variable with empty object first](https://bit.ly/3iwwtwj) 
-let g:ale_fixers = {}
-let g:ale_fixers['javascript'] = ['eslint']
-
-" Fix files automatically on save
-let g:ale_fix_on_save = 1
-
-" }}}
-" FUNCTIONS {{{
-"
-" Rename file which is opened in current buffer
-function! RenameFile()
-  let old_name = expand('%')
-  let new_name = input('New file name: ', expand('%'), 'file')
-  if new_name != '' && new_name != old_name
-    exec ':saveas ' . new_name
-    exec ':silent !rm ' . old_name
-    redraw!
-  endif
-endfunction
-
 " }}}
 " EDITOR {{{
 "
-" Instead to have '# vim:syntax=sh filetype=sh' define per each bash script
-" so lets to define it for different syntax here
-" (https://stackoverflow.com/a/2669295/9822844)
-au BufNewFile,BufRead * if &syntax == '' | set syntax=sh | endif
 " Automatically wrap at 80 characters for Markdown
-au BufRead,BufNewFile *.md setlocal textwidth=120"
+au BufRead,BufNewFile *.md setlocal textwidth=80
 let vim_markdown_preview_hotkey='<C-m>'
