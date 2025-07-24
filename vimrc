@@ -48,6 +48,9 @@ filetype plugin indent on
 " Leader
 let mapleader = " "
 
+" Formatting every time save a file
+autocmd BufWritePre *.js,*.jsx,*.ts,*.tsx,*.json,*.css,*.scss,*.html silent call CocActionAsync('format')
+
 " }}}
 " KEY BINDINGS {{{
 "
