@@ -47,10 +47,9 @@ Plug 'tpope/vim-rake'
 " -----
 " emmet - improves HTML & CSS workflow (https://emmet.io/)
 Plug 'mattn/emmet-vim'
-Plug 'prettier/vim-prettier'
 " asynchronous lint engine - providing linting (syntax checking and semantic errors)
-Plug 'dense-analysis/ale'
-" code completion
+" Plug 'dense-analysis/ale'
+" code completion leveraging LSP (Language Server Protocol); requires node.js & npm
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 " testing
