@@ -15,20 +15,26 @@ set encoding=utf-8
 " Use Vim settings, rather then Vi settings
 set nocompatible 
 
-" use system clipboard
+" Use system clipboard
 set clipboard=unnamed
 
-" always display status line
+" Always display status line
 set laststatus=2
 
-" fix the problem wiht backspace in vim version 7.4 or higher
+" Keeps 8 lines of context visible above and below the cursor
+set scrolloff=8
+
+" Reserves a column on the left for signs
+set signcolumn=yes
+
+" Fix the problem wiht backspace in vim version 7.4 or higher
 set backspace=2 
 
-" get the full path of current file ctrl+g
+" Get the full path of current file ctrl+g
 set statusline+=%F 
 
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/gruvbox
+" Display line numbers
+set number
 
 " Tabs and spaces
 set tabstop=2
@@ -99,7 +105,7 @@ inoremap <expr> <S-Tab> coc#pum#visible() ? coc#pum#prev(1) : "\<S-Tab>"
 " VISUAL {{{
 "
 " vertical line/ruler
-set colorcolumn=120
+set colorcolumn=80
 
 " show the cursor position all the time
 set ruler
@@ -116,10 +122,6 @@ set re=0
 " theme: vim-code-dark
 let g:codedark_modern=1
 colorscheme codedark
-
-" them: gruvebox
-" let g:gruvbox_contrast_dark='hard'
-" colorscheme gruvbox
 
 set background=dark
 hi ColorColumn ctermbg=238
