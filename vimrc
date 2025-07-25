@@ -77,9 +77,6 @@ nnoremap <Leader>T :Tags<CR>
 " Searching for string patterns inside files
 nnoremap <Leader>a :Rg<CR>
 
-" Rename currently opened file
-nnoremap <Leader>n :call RenameFile()<CR>
-
 " tcomment
 map <Leader>c <c-_><c-_>
 
