@@ -1,9 +1,9 @@
 #!/bin/zsh
 
-SESSION_ATTACHE='instea'
+SESSION_ATTACHE='todos'
 
 if [[ 'brew -v' ]]; then
-  brew update && brew upgrade && brew cleanup && \
+  brew cleanup && brew upgrade && brew update && \
 else
   echo 'Install Homebrew!'
   # /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"

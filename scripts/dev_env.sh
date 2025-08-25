@@ -1,6 +1,6 @@
-#!/bin/bash
+#!/bin/zsh
 
-session=(workspace instea)
+session=(dotfiles todos workspace epic conduit blog resume job)
 
 get_session () {
   get_session_name=$(tmux ls | grep $1 | awk '{print $1}')
@@ -22,40 +22,60 @@ no_window_zero () {
 
 set_session () {
   workspace=$HOME/$1
-  if [[ "$1" == "workspace" ]] 
-  then
-    tmux new-window -t $1:1 -n dotfiles -c "dotfiles" -d
-    tmux new-window -t $1:2 -n vitepress-articles -c "${workspace}/vitepress-articles" -d
-    tmux new-window -t $1:3 -n jsbootcamp -c "${workspace}/js-bootcamp" -d
-      tmux split-window -t jsbootcamp -h -c "${workspace}/js-bootcamp" 
-      tmux split-window -t jsbootcamp -c "${workspace}/js-bootcamp" \; select-pane -t 1
-    tmux new-window -t $1:4 -n testing-javascript -c "${workspace}/testing-javascript" -d
-      tmux split-window -t testing-javascript -h -c "${workspace}/testing-javascript"
-      tmux split-window -t testing-javascript -c "${workspace}/testing-javascript" \; select-pane -t 1 
-    tmux new-window -t $1:5 -n tau -c "${workspace}/tau" -d
-    tmux new-window -t $1:6 -n cy-tips -c "${workspace}/cypress-tips" -d \; split-window -t cy-tips -h -c "${workspace}/cypress-tips" 
-    tmux new-window -t $1:7 -n 10-days-of-js -c "${workspace}/10-days-of-js" -d \; split-window -t 10-days-of-js -h -c "${workspace}/10-days-of-js" 
-    tmux new-window -t $1:8 -n vue-realworld-example -c "${workspace}/vue3-realworld-example-app" -d \; split-window -t vue-realworld-example -h -c "${workspace}/vue3-realworld-example-app" 
-    tmux new-window -t $1:9 -n todos -c "${workspace}/todos" -d
+  if [[ "$1" == "dotfiles" ]]; then
+    tmux new-window -t $1:1 -n dotfiles -c "${workspace}" -d
+      tmux split-window -t dotfiles -v -c "${workspace}/scripts"
     no_window_zero $1
   fi
-  if [[ "$1" == "instea" ]] 
-  then
-    tmux new-window -t $1:1 -n instea -c "${workspace}" -d
-    tmux new-window -t $1:2 -n quick -c "${workspace}/quick/quick-online-v2" -d
-      tmux split-window -t quick -h -c "${workspace}/quick/quick-online-v2"
-      tmux split-window -t quick -c "${workspace}/quick/quick-online-v2"
-    tmux new-window -t $1:3 -n quick-dd -c "${workspace}/quick/quick-driver-dispatch/src/app" -d
-      tmux send-keys -t quick-dd "nvm use 16 && yarn start" enter
-      tmux split-window -t quick-dd -v -c "${workspace}/quick/quick-driver-dispatch/src/api"
-        tmux send-keys -t quick-dd "nvm use 16 && yarn start" enter
-      tmux split-window -t quick-dd -h -c "${workspace}/quick/quick-driver-dispatch/test/quick-test-app"
-        tmux send-keys -t quick-dd "nvm use 16 && PORT=3001 yarn start" enter
-      tmux split-window -t quick-dd -v -c "${workspace}/quick/quick-driver-dispatch"
-        tmux send-keys -t quick-dd "docker-compose -f docker-compose-local.yml up" enter
-      tmux split-window -t quick-dd -v -c "${workspace}/quick/quick-driver-dispatch"
-    tmux select-layout -t quick-dd tiled
-    tmux new-window -t $1:4 -n quick-dd-k6 -c "${workspace}/quick/quick-driver-dispatch/src/api/test/k6" -d
+  if [[ "$1" == "todos" ]]; then
+    tmux new-window -t $1:1 -n todos -c "workspace/todos" -d
+    no_window_zero $1
+  fi
+  if [[ "$1" == "workspace" ]]; then
+    tmux new-window -t $1:1 -n hacckerrank -c "${workspace}/hackerrank" -d
+    tmux new-window -t $1:2 -n pw-course -c "${workspace}/playwright-course" -d
+      tmux split-window -t pw-course -v -c "${workspace}/playwright-course"
+      tmux split-window -t pw-course -h -c "${workspace}/playwright-course"
+    tmux new-window -t $1:3 -n jsbootcamp -c "${workspace}/js-bootcamp" -d
+      tmux split-window -t jsbootcamp -v -c "${workspace}/js-bootcamp" 
+      tmux split-window -t jsbootcamp -h -c "${workspace}/js-bootcamp" \; select-pane -t 1
+    tmux new-window -t $1:4 -n tau -c "${workspace}/tau" -d
+    tmux new-window -t $1:5 -n vue-realworld-example -c "${workspace}/vue3-realworld-example-app" -d \; split-window -t vue-realworld-example -h -c "${workspace}/vue3-realworld-example-app" 
+    no_window_zero $1
+  fi
+  if [[ "$1" == "conduit" ]]; then
+    tmux new-window -t $1:1 -n conduit -c "workspace/realworld-app-conduit" -d
+      tmux split-window -t conduit -v -c "workspace/realworld-app-conduit"
+      tmux split-window -t conduit -h -c "workspace/realworld-app-conduit"
+    no_window_zero $1
+  fi
+  if [[ "$1" == "epic" ]]; then
+    tmux new-window -t $1:1 -n epic-react -c "workspace/epic-react" -d
+      tmux split-window -t epic-react -v -c "workspace/epic-react"
+      tmux split-window -t epic-react -h -c "workspace/epic-react"
+    tmux new-window -t $1:2 -n epic-testing -c "workspace/testing-javascript" -d
+      tmux split-window -t epic-testing -v -c "workspace/testing-javascript"
+      tmux split-window -t epic-testing -h -c "workspace/testing-javascript" \; select-pane -t 1 
+    no_window_zero $1
+  fi
+  if [[ "$1" == "blog" ]]; then
+    tmux new-window -t $1:1 -n article -c "workspace/blog" -d
+      tmux split-window -t article -h -c "workspace/blog/articles"
+      tmux split-window -t article -v -c "workspace/article-draft"
+    no_window_zero $1
+  fi
+  if [[ "$1" == "resume" ]]; then
+    tmux new-window -t $1:1 -n cv-jekyll -c "workspace/cv-online" -d
+      tmux split-window -t cv-jekyll -v -c "workspace/cv-online" 
+    tmux new-window -t $1:2 -n cv-vuepress -c "workspace/vuepress-cv" -d
+    no_window_zero $1
+  fi
+  if [[ "$1" == "job" ]]; then
+    tmux new-window -t $1:1 -n assignment -c "workspace" -d
+    tmux new-window -t $1:2 -n assignment -c "workspace/assignments" -d
+      tmux split-window -t assignment -v -c "workspace/assignments" 
+      tmux split-window -t assignment -h -c "workspace/assignments"
+    tmux new-window -t $1:3 -n satoshilabs -c "satoshilabs" -d
     no_window_zero $1
   fi
 }
@@ -63,8 +83,7 @@ set_session () {
 tmux start-server
 for s in "${session[@]}"
 do
-  if get_session $s
-  then
+  if get_session $s; then
     # tmux new-session -d -s $s -n default -c $HOME/$s
     tmux new-session -d -s $s
     set_session $s
