@@ -13,3 +13,5 @@
 	smudge = git-lfs smudge -- %f
 [init]
 	defaultBranch = main
+[core]
+	excludesfile = /Users/michal.zak/.gitignore_global
