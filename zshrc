@@ -55,3 +55,7 @@ export NVM_DIR="$HOME/.nvm"
 
 export PATH="/usr/bin:$PATH"
 export PATH="/usr/sbin:$PATH"
+
+# environment variables related to Trezor
+export HOSTNAME=`hostname`
+export DISPLAY=:0
