@@ -15,4 +15,4 @@ else
   echo 'Install VIM'
 fi
 
-sh $HOME/.scripts/dev_env.sh && tmux attach -t $SESSION_ATTACHE
+sh $HOME/scripts/dev_env.sh && tmux attach -t $SESSION_ATTACHE

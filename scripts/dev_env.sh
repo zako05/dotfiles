@@ -1,11 +1,9 @@
 #!/bin/zsh
 
-session=(dotfiles todos workspace epic conduit blog resume job)
+session=(dotfiles todos satoshilabs job conduit hackerrank epic js-bootcamp playwright-course)
 
 get_session () {
-  get_session_name=$(tmux ls | grep $1 | awk '{print $1}')
-  if [ "$get_session_name" != "$1:" ]
-  then
+  if ! tmux has-session -t "$1" 2>/dev/null; then
     echo "Session $1 does not exist."
     return 0
   else
@@ -14,68 +12,153 @@ get_session () {
   fi
 }
 
-# Gets rid of window 0, which is not accessible right away (hence sleep 1)
+get_repo () {
+  local repo_name="$1"
+  local local_dir="$2"
+  local github_owner="${3:-zako05}"
+  local repo_url="git@github.com:${github_owner}/${repo_name}.git"
+
+  if [ -d "$local_dir" ]; then
+    echo "Directory '$local_dir' exists. Pulling latest changes..."
+    git -C "$local_dir" pull
+  else 
+    echo "Directory '$local_dir' does not exist. Cloning the repository..."
+    git clone "$repo_url" "$local_dir"
+  fi
+}
+
+workspace_exists () {
+  if [ -d $WORKSPACE_DIR ]; then
+    echo "Workspace direcotry exists"
+  else
+    echo "Workspace direcotry does not exist. Creating the directory..."
+    mkdir $WORKSPACE_DIR
+  fi
+}
+
+# removes the inaccessible window 0
 no_window_zero () {
   sleep 1
   tmux unlink-window -k -t $1:0
 }
 
 set_session () {
-  workspace=$HOME/$1
   if [[ "$1" == "dotfiles" ]]; then
-    tmux new-window -t $1:1 -n dotfiles -c "${workspace}" -d
-      tmux split-window -t dotfiles -v -c "${workspace}/scripts"
-    no_window_zero $1
+    local project_dir="$HOME/$1"
+    get_repo "$1" "$project_dir"
+    tmux new-window -t "$1:1" -n "$1" -c "$project_dir" -d
+      tmux split-window -t "$1" -v -c "$project_dir/scripts"
+    no_window_zero "$1"
   fi
+
   if [[ "$1" == "todos" ]]; then
-    tmux new-window -t $1:1 -n todos -c "workspace/todos" -d
-    no_window_zero $1
+    local project_dir="$HOME/$1"
+    get_repo "$1" "$project_dir"
+
+    local current_year=$(date +%Y)
+    local latest_file=$(ls -t "$project_dir"/$current_year/??????-dev.todo.md | head -n 1)
+
+    tmux new-window -t "$1:1" -n "$1-dev" -c "$project_dir/$current_year" -d
+      tmux send-keys -t "$1:1" "vim \"$latest_file\"" C-m
+      tmux split-window -t "$1-dev" -h
+    tmux new-window -t "$1:2" -n "$1-sm" -c "$project_dir" -d
+      tmux send-keys -t "$1:2" "vim todos-sm.md" C-m
+    no_window_zero "$1"
   fi
-  if [[ "$1" == "workspace" ]]; then
-    tmux new-window -t $1:1 -n hacckerrank -c "${workspace}/hackerrank" -d
-    tmux new-window -t $1:2 -n pw-course -c "${workspace}/playwright-course" -d
-      tmux split-window -t pw-course -v -c "${workspace}/playwright-course"
-      tmux split-window -t pw-course -h -c "${workspace}/playwright-course"
-    tmux new-window -t $1:3 -n jsbootcamp -c "${workspace}/js-bootcamp" -d
-      tmux split-window -t jsbootcamp -v -c "${workspace}/js-bootcamp" 
-      tmux split-window -t jsbootcamp -h -c "${workspace}/js-bootcamp" \; select-pane -t 1
-    tmux new-window -t $1:4 -n tau -c "${workspace}/tau" -d
-    tmux new-window -t $1:5 -n vue-realworld-example -c "${workspace}/vue3-realworld-example-app" -d \; split-window -t vue-realworld-example -h -c "${workspace}/vue3-realworld-example-app" 
-    no_window_zero $1
+
+  if [[ "$1" == "satoshilabs" ]]; then
+    local project_dir="$HOME/$1"
+    mkdir -p $project_dir
+     
+    get_repo "trezor-suite" "$project_dir/trezor-suite" "trezor"
+    get_repo "trezor-user-env" "$project_dir/trezor-user-env" "trezor"
+
+    tmux new-window -t "$1:1" -n "docs" -c "$project_dir/docs" -d
+    tmux new-window -t "$1:2" -n "trezor-suite" -c "$project_dir/trezor-suite" -d
+      tmux split-window -t "trezor-suite" -v
+      tmux split-window -t "trezor-suite" -h
+    tmux new-window -t "$1:3" -n "trezor-user-env" -c "$project_dir/trezor-user-env" -d
+      tmux split-window -t "trezor-user-env" -v
+      tmux split-window -t "trezor-user-env" -h
+    no_window_zero "$1"
   fi
-  if [[ "$1" == "conduit" ]]; then
-    tmux new-window -t $1:1 -n conduit -c "workspace/realworld-app-conduit" -d
-      tmux split-window -t conduit -v -c "workspace/realworld-app-conduit"
-      tmux split-window -t conduit -h -c "workspace/realworld-app-conduit"
-    no_window_zero $1
-  fi
-  if [[ "$1" == "epic" ]]; then
-    tmux new-window -t $1:1 -n epic-react -c "workspace/epic-react" -d
-      tmux split-window -t epic-react -v -c "workspace/epic-react"
-      tmux split-window -t epic-react -h -c "workspace/epic-react"
-    tmux new-window -t $1:2 -n epic-testing -c "workspace/testing-javascript" -d
-      tmux split-window -t epic-testing -v -c "workspace/testing-javascript"
-      tmux split-window -t epic-testing -h -c "workspace/testing-javascript" \; select-pane -t 1 
-    no_window_zero $1
-  fi
-  if [[ "$1" == "blog" ]]; then
-    tmux new-window -t $1:1 -n article -c "workspace/blog" -d
-      tmux split-window -t article -h -c "workspace/blog/articles"
-      tmux split-window -t article -v -c "workspace/article-draft"
-    no_window_zero $1
-  fi
-  if [[ "$1" == "resume" ]]; then
-    tmux new-window -t $1:1 -n cv-jekyll -c "workspace/cv-online" -d
-      tmux split-window -t cv-jekyll -v -c "workspace/cv-online" 
-    tmux new-window -t $1:2 -n cv-vuepress -c "workspace/vuepress-cv" -d
-    no_window_zero $1
-  fi
+
   if [[ "$1" == "job" ]]; then
-    tmux new-window -t $1:1 -n assignment -c "workspace" -d
-    tmux new-window -t $1:2 -n assignment -c "workspace/assignments" -d
-      tmux split-window -t assignment -v -c "workspace/assignments" 
-      tmux split-window -t assignment -h -c "workspace/assignments"
-    tmux new-window -t $1:3 -n satoshilabs -c "satoshilabs" -d
+    local parent_dir="$HOME/workspace/$1"
+    mkdir -p $parent_dir
+
+    get_repo "online-cv" "$parent_dir/online-cv"
+    # get_repo "vuepress-cv" "$parent_dir/vuepress-cv"
+
+    tmux new-window -t $1:1 -n "online-cv" -c "$parent_dir/online-cv" -d
+      tmux split-window -t "online-cv" -v
+    # tmux new-window -t $1:2 -n "vuepress-cv" -c "$parent_dir/vuepress-cv" -d
+    no_window_zero $1
+  fi
+  
+  if [[ "$1" == "conduit" ]]; then
+    local parent_dir="$HOME/workspace/project"
+    local repo_name="realworld-app-conduit"
+    mkdir -p $parent_dir
+    get_repo "$repo_name" "$parent_dir/$repo_name"
+
+    tmux new-window -t $1:1 -n "$1" -c "$parent_dir/$repo_name" -d
+      tmux split-window -t "$1" -v
+      tmux split-window -t "$1" -h
+    no_window_zero $1
+  fi
+
+  if [[ "$1" == "hackerrank" ]]; then
+    local parent_dir="$HOME/workspace/learn"
+    local repo_name="hackerrank"
+    mkdir -p $parent_dir
+    get_repo "$repo_name" "$parent_dir/$repo_name"
+
+    tmux new-window -t $1:1 -n "$1" -c "$parent_dir/$repo_name" -d
+      tmux split-window -t "$1" -v
+    no_window_zero $1
+  fi
+
+  if [[ "$1" == "epic" ]]; then
+    local parent_dir="$HOME/workspace/learn/epic"
+    mkdir -p $parent_dir
+    
+    get_repo "testing-javascript" "$parent_dir/testing-javascript"
+    # get_repo "epic-react" "$parent_dir/epic-react"
+
+    tmux new-window -t $1:1 -n "$1-testing" -c "$parent_dir/testing-javascript" -d
+      tmux split-window -t "$1-testing" -v
+      tmux split-window -t "$1-testing" -h 
+    # tmux new-window -t $1:2 -n "$1-react" -c "$parent_dir/epic-react" -d
+    #   tmux split-window -t "$1-react" -v
+    #   tmux split-window -t "$1-react" -h
+    no_window_zero $1
+  fi
+  
+  if [[ "$1" == "js-bootcamp" ]]; then
+    local parent_dir="$HOME/workspace/learn"
+    mkdir -p $parent_dir
+    get_repo "$1" "$parent_dir/$1"
+
+    tmux new-window -t $1:1 -n "$1" -c "$parent_dir/$1" -d
+      tmux split-window -t "$1" -v
+      tmux split-window -t "$1" -h
+    no_window_zero $1
+  fi
+ 
+  if [[ "$1" == "playwright-course" ]]; then
+    local parent_dir="$HOME/workspace/learn"
+    mkdir -p $parent_dir
+   
+    get_repo "provider-pw-start" "$parent_dir/provider-pw-start"
+    get_repo "consumer-pw-start" "$parent_dir/consumer-pw-start"
+
+    tmux new-window -t $1:1 -n "provider" -c "$parent_dir/provider-pw-start" -d
+      tmux split-window -t "provider" -v
+      tmux split-window -t "provider" -h
+    tmux new-window -t $1:2 -n "consumer" -c "$parent_dir/consumer-pw-start" -d
+      tmux split-window -t "consumer" -v
+      tmux split-window -t "consumer" -h
     no_window_zero $1
   fi
 }
