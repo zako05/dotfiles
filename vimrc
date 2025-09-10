@@ -48,6 +48,10 @@ set splitright
 
 set tags=./tags
 
+" VIM swap-file directory
+" Make sure the directory exists, or vim won't use it
+set directory^=$HOME/.vim/swap//
+
 " Indents based on file type, eg. type '>>' to shift 2 spaces
 filetype plugin indent on
 
