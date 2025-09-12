@@ -46,7 +46,8 @@ set_session () {
   if [[ "$1" == "dotfiles" ]]; then
     local project_dir="$HOME/$1"
     get_repo "$1" "$project_dir"
-    tmux new-window -t "$1:1" -n "$1" -c "$project_dir" -d
+    tmux new-window -t "$1:1" -n "home" -c "$HOME" -d
+    tmux new-window -t "$1:2" -n "$1" -c "$project_dir" -d
       tmux split-window -t "$1" -v -c "$project_dir/scripts"
     no_window_zero "$1"
   fi
@@ -60,9 +61,8 @@ set_session () {
 
     tmux new-window -t "$1:1" -n "$1-dev" -c "$project_dir/$current_year" -d
       tmux send-keys -t "$1:1" "vim \"$latest_file\"" C-m
-      tmux split-window -t "$1-dev" -h
     tmux new-window -t "$1:2" -n "$1-sm" -c "$project_dir" -d
-      tmux send-keys -t "$1:2" "vim todos-sm.md" C-m
+      tmux send-keys -t "$1:2" "vim sm.todo.md" C-m
     no_window_zero "$1"
   fi
 
