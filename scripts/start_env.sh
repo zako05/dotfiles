@@ -3,14 +3,14 @@
 SESSION_ATTACHE='todos'
 
 update_brew_vim () {
-  if brew -v &> /null/dev; then
+  if brew -v &> /dev/null; then
     brew cleanup && brew upgrade && brew update && \
   else
     echo 'Homebrew not found. Skipping update.'
     # /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
   fi
   
-  if vim --version &> /null/dev; then
+  if vim --version &> /dev/null; then
     vim +':PlugUpdate --sync' +qa && \
   else 
     echo 'Vim not found. Skipping plugin update.'
