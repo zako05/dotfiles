@@ -74,12 +74,12 @@ set_session () {
     get_repo "trezor-user-env" "$project_dir/trezor-user-env" "trezor"
 
     tmux new-window -t "$1:1" -n "docs" -c "$project_dir/docs" -d
-    tmux new-window -t "$1:2" -n "trezor-suite" -c "$project_dir/trezor-suite" -d
-      tmux split-window -t "trezor-suite" -v
-      tmux split-window -t "trezor-suite" -h
-    tmux new-window -t "$1:3" -n "trezor-user-env" -c "$project_dir/trezor-user-env" -d
-      tmux split-window -t "trezor-user-env" -v
-      tmux split-window -t "trezor-user-env" -h
+    tmux new-window -t "$1:2" -n "docs" -c "$project_dir/trezor-suite/docs" -d
+    tmux new-window -t "$1:3" -n "trezor-suite" -c "$project_dir/trezor-suite/packages/suite-desktop-core" -d
+      tmux split-window -t "trezor-suite" -v -c "$project_dir/trezor-suite"
+      tmux send-keys -t "$1:3" "git submodule update --init --recursive && git lfs pull && yarn && yarn build:libs" C-m
+      tmux split-window -t "trezor-suite" -h -c "$project_dir/trezor-suite/packages/suite-desktop-core"
+    tmux new-window -t "$1:4" -n "trezor-user-env" -c "$project_dir/trezor-user-env" -d
     no_window_zero "$1"
   fi
 
