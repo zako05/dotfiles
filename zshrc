@@ -46,6 +46,9 @@ unsetopt CORRECT_ALL
 # FZF fuzzy searcher
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
+# Set Homebrew PATH
+export PATH="/opt/homebrew/bin:$PATH"
+
 # Load ASDF
 . $(brew --prefix asdf)
 
@@ -53,9 +56,6 @@ export NVM_DIR="$HOME/.nvm"
 # [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
 [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
 
-export PATH="/usr/bin:$PATH"
-export PATH="/usr/sbin:$PATH"
-
-# environment variables related to Trezor
+# Trezor related environment variables
 export HOSTNAME=`hostname`
 export DISPLAY=:0
