@@ -61,6 +61,8 @@ let mapleader = " "
 " Formatting every time save a file
 autocmd BufWritePre *.js,*.jsx,*.ts,*.tsx,*.json,*.css,*.scss,*.html silent call CocActionAsync('format')
 
+let g:gutentags_ctags_executable = '/opt/homebrew/bin/ctags'
+
 " }}}
 " KEY BINDINGS {{{
 "
