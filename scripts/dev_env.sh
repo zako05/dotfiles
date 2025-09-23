@@ -11,7 +11,12 @@ has_session () {
 }
 
 new_window () {
-  tmux new-window -t "$1:$2" -n "$3" -c "$4" -d
+  local session_name="$1"
+  local window_index="$2"
+  local window_name="$3"
+  local window_path="$4"
+
+  tmux new-window -t "${session_name}:${window_index}" -n "${window_name}" -c "${window_path}" -d
 }
 
 # Clones or pulls a git repository.
@@ -71,8 +76,11 @@ set_session () {
       new_window "$session_name" 2 "docs" "$project_dir/trezor-suite/docs"
       new_window "$session_name" 3 "trezor-suite" "$project_dir/trezor-suite/packages/suite-desktop-core"
       tmux split-window -t "$session_name:3" -v -c "$project_dir/trezor-suite"
-      tmux send-keys -t "$session_name:3" "git submodule update --init --recursive && git lfs pull && yarn && yarn build:libs" C-m
+      tmux select-pane -t "$session_name:3.1"
+      tmux split-window -t "$session_name:3" -h -c "$project_dir/trezor-suite/packages/suite-desktop-core/e2e"
+      tmux select-pane -t "$session_name:3.3"
       tmux split-window -t "$session_name:3" -h -c "$project_dir/trezor-suite/packages/suite-desktop-core"
+      tmux send-keys -t "$session_name:3.3" "git submodule update --init --recursive && git lfs pull && yarn && yarn build:libs" C-m
       new_window "$session_name" 4 "trezor-user-env" "$project_dir/trezor-user-env"
       ;;
 
