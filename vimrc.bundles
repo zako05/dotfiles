@@ -2,7 +2,7 @@ if &compatible
   set nocompatible
 end
 
-let g:polyglot_disabled = ['markdown']
+let g:polyglot_disabled = ['netrw', 'markdown']
 
 call plug#begin('~/.vim/bundle')
 
