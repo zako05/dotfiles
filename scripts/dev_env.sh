@@ -1,8 +1,8 @@
 #!/bin/zsh
 
 # Configuration variables
-readonly SESSION=(dotfiles todos satoshilabs job conduit hackerrank epic js-bootcamp playwright-course)
-readonly DEFAUILT_GITHUB_USER="zako05"
+readonly SESSION=(dotfiles todos satoshilabs job articles conduit hackerrank epic js-bootcamp playwright-course)
+readonly DEFAULT_GITHUB_USER="zako05"
 
 # --- Helper Functions ---
 
@@ -24,7 +24,7 @@ new_window () {
 get_repo () {
   local repo_name="$1"
   local local_dir="$2"
-  local github_owner="${3:-DEFAUILT_GITHUB_USER}"
+  local github_owner="${3:-$DEFAULT_GITHUB_USER}"
   local repo_url="git@github.com:${github_owner}/${repo_name}.git"
 
   if [ -d "$local_dir" ]; then
@@ -49,6 +49,7 @@ set_session () {
     "dotfiles")
       project_dir="$HOME/$session_name"
       get_repo "$session_name" "$project_dir"
+
       new_window "$session_name" 1 "home" "$HOME"
       new_window "$session_name" 2 "$session_name" "$project_dir"
       tmux split-window -t "$1" -v -c "$project_dir/scripts"
@@ -89,6 +90,15 @@ set_session () {
       mkdir -p $parent_dir
       get_repo "online-cv" "$parent_dir/online-cv"
       # get_repo "vuepress-cv" "$parent_dir/vuepress-cv"
+      ;;
+    
+    "articles")
+      parent_dir="$HOME/workspace/$session_name"
+      get_repo "$session_name" "$parent_dir"
+
+      new_window "$session_name" 1 "articles" "$parent_dir"
+      tmux split-window -t "$session_name:1" -v -c "$parent_dir" -d
+      new_window "$session_name" 2 "vuepress" "$parent_dir"
       ;;
 
     "conduit")
