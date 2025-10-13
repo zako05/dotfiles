@@ -59,3 +59,6 @@ export NVM_DIR="$HOME/.nvm"
 # Trezor related environment variables
 export HOSTNAME=`hostname`
 export DISPLAY=:0
+
+# Created by `pipx` on 2025-10-07 12:48:33
+export PATH="$PATH:/Users/michal.zak/.local/bin"
