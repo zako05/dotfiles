@@ -2,6 +2,27 @@
 
 SESSION_ATTACHE='todos'
 
+vim_swap_dir_setup () {
+  local VIM_DIR="$HOME/.vim"
+  local VIM_SWAP_DIR="$VIM_DIR/swap"
+
+  echo "Checking Vim directories..."
+
+  if [ ! -d "VIM_DIR" ]; then 
+    echo "Creating $VIM_DIR dir"
+
+    mkdir -p "$VIM_DIR"
+  fi
+
+  if [ ! -d "VIM_SWAP_DIR" ]; then
+    echo "Creating $VIM_SWAP_DIR dir"  
+
+    mkdir -p "VIM_SWAP_DIR"
+  fi
+
+  echo "Vim directories are ready"
+}
+
 update_brew_vim () {
   if brew -v &> /dev/null; then
     brew cleanup && brew upgrade && brew update && \
@@ -43,3 +64,4 @@ else
   update_brew_vim
   sh "$HOME/scripts/dev_env.sh" && tmux attach -t "$SESSION_ATTACHE"
 fi
+vim_swap_dir_setup
