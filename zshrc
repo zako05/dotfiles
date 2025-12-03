@@ -60,5 +60,13 @@ export NVM_DIR="$HOME/.nvm"
 export HOSTNAME=`hostname`
 export DISPLAY=:0
 
+# Android SDK
+export ANDROID_HOME=$HOME/Library/Android/sdk
+export PATH=$PATH:/Users/michal.zak/Library/Android/sdk/platform-tools
+
 # Created by `pipx` on 2025-10-07 12:48:33
 export PATH="$PATH:/Users/michal.zak/.local/bin"
+
+# temporary fix of /var/folders/zz/.../T EACCES: permission denied
+# problem with yarn, eslint, etc.
+export TMPDIR=~/yarn-temp
