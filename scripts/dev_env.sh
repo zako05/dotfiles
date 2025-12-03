@@ -65,6 +65,7 @@ set_session () {
       [[ -n "$latest_file" ]] && tmux send-keys -t "$session_name:1" "vim \"$latest_file\"" C-m
       new_window $session_name 2 "$session_name-sm" "$project_dir"
       tmux send-keys -t "$1:2" "vim sm.todo.md" C-m
+      tmux select-window -t "$session_name:1"
       ;;
     
     "satoshilabs")
@@ -82,7 +83,12 @@ set_session () {
       tmux select-pane -t "$session_name:3.3"
       tmux split-window -t "$session_name:3" -h -c "$project_dir/trezor-suite/packages/suite-desktop-core"
       tmux send-keys -t "$session_name:3.3" "git submodule update --init --recursive && git lfs pull && yarn && yarn build:libs" C-m
+      tmux select-pane -t "$session_name:3.3"
+      tmux split-window -t "$session_name:3" -h -c "$project_dir/trezor-suite"
       new_window "$session_name" 4 "trezor-user-env" "$project_dir/trezor-user-env"
+      tmux split-window -t "$session_name:4" -h -c "$project_dir/trezor-suite/packages/trezor-user-env-link"
+      tmux send-keys -t "$session_name:4.2" "vim src/api.ts" C-m
+      new_window "$session_name" 5 "trezor-suite" "$project_dir/trezor-suite"
       ;;
 
     "job")
