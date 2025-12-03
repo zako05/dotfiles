@@ -2,36 +2,64 @@
 
 SESSION_ATTACHE='todos'
 
-vim_swap_dir_setup () {
-  local VIM_DIR="$HOME/.vim"
-  local VIM_SWAP_DIR="$VIM_DIR/swap"
+VIM_DIR="$HOME/.vim"
+VIM_SWAP_DIR="$VIM_DIR/swap"
 
+vim_swap_dir_cleanup() {
+    echo "Starting Vim swap directory cleanup..."
+
+    if [ ! -d "$VIM_SWAP_DIR" ]; then
+        echo "Swap directory $VIM_SWAP_DIR does not exist. Skipping cleanup"
+
+        return
+    fi
+    
+    if ! find "$VIM_SWAP_DIR" -type f -print -quit 2>/dev/null; then
+        echo "Swap directory $VIM_SWAP_DIR is empty. Skipping cleanup"
+
+        return
+    fi
+
+    echo "Deleting ALL swap files in: $VIM_SWAP_DIR..."
+
+    find "$VIM_SWAP_DIR" -type f -delete
+
+    echo "Cleanup complete."
+}
+
+vim_swap_dir_setup () {
   echo "Checking Vim directories..."
 
-  if [ ! -d "VIM_DIR" ]; then 
+  if [ ! -d "$VIM_DIR" ]; then 
     echo "Creating $VIM_DIR dir"
 
     mkdir -p "$VIM_DIR"
   fi
 
-  if [ ! -d "VIM_SWAP_DIR" ]; then
+  if [ ! -d "$VIM_SWAP_DIR" ]; then
     echo "Creating $VIM_SWAP_DIR dir"  
 
-    mkdir -p "VIM_SWAP_DIR"
+    mkdir -p "$VIM_SWAP_DIR"
   fi
 
   echo "Vim directories are ready"
+
+  vim_swap_dir_cleanup
 }
 
 update_brew_vim () {
-  if brew -v &> /dev/null; then
+  if command -v brew &> /dev/null; then
+    echo "Updating Homebrew packages..."
+
     brew cleanup && brew upgrade && brew update && \
   else
     echo 'Homebrew not found. Skipping update.'
     # /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
   fi
   
-  if vim --version &> /dev/null; then
+  if command -v vim &> /dev/null; then
+    echo "Updating Vim plugins with PlugUpdate..."
+
     vim +':PlugUpdate --sync' +qa && \
   else 
     echo 'Vim not found. Skipping plugin update.'
@@ -56,6 +84,8 @@ show_help () {
   echo "    Runs updates only."
 }
 
+vim_swap_dir_setup
+
 if [[ "$1" == "-u" || "$1" == "--update" ]]; then
   update_brew_vim
 elif [[ "$1" == "-h" || "$1" == "--help" ]]; then
@@ -64,4 +94,3 @@ else
   update_brew_vim
   sh "$HOME/scripts/dev_env.sh" && tmux attach -t "$SESSION_ATTACHE"
 fi
-vim_swap_dir_setup
