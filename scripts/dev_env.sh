@@ -2,6 +2,7 @@
 
 # Configuration variables
 readonly SESSION=(dotfiles todos satoshilabs job articles conduit hackerrank epic js-bootcamp playwright-course)
+readonly ATTACH_SESSION="satoshilabs"
 readonly DEFAULT_GITHUB_USER="zako05"
 
 # --- Helper Functions ---
@@ -58,10 +59,29 @@ set_session () {
     "todos")
       project_dir="$HOME/$session_name"
       get_repo "$session_name" "$project_dir"
-      local current_year=$(date +%Y)
-      local latest_file=$(ls -t "$project_dir"/$current_year/??????-dev.todo.md | head -n 1)
 
-      new_window $session_name 1 "$session_name-dev" "$project_dir/$current_year"
+      local current_year=$(date +%Y)
+      local year_dir="$project_dir/$current_year"
+
+      # Create the year directory if it doesn't exist (e.g., first run in 2026)
+      if [[ ! -d "$year_dir" ]]; then
+        echo "Creating new directory for $current_year..."
+        mkdir -p "$year_dir"
+      fi
+
+      local latest_file=($year_dir/??????-dev.todo.md(Nom[1]))
+
+      # If no file exists for this year yet, generate the new on
+      if [[ -z "$latest_file" ]]; then
+        local year_month=$(date +%Y%m)
+        
+        echo "Creating new file $year_dir/$year_month"
+
+        latest_file="$year_dir/$year_month-dev.todo.md"
+        touch $latest_file
+      fi
+
+      new_window $session_name 1 "$session_name-dev" "$year_dir"
       [[ -n "$latest_file" ]] && tmux send-keys -t "$session_name:1" "vim \"$latest_file\"" C-m
       new_window $session_name 2 "$session_name-sm" "$project_dir"
       tmux send-keys -t "$1:2" "vim sm.todo.md" C-m
@@ -90,7 +110,18 @@ set_session () {
       tmux split-window -t "$session_name:4" -h -c "$project_dir/trezor-suite/packages/trezor-user-env-link"
       tmux send-keys -t "$session_name:4.1" "./run.sh" C-m
       tmux send-keys -t "$session_name:4.2" "vim src/api.ts" C-m
-      new_window "$session_name" 5 "unknown" "$project_dir/trezor-suite"
+      new_window "$session_name" 5 "suite-native-android" "$project_dir/trezor-suite/suite-native/app"
+      tmux split-window -t "$session_name:5" -v -c "$project_dir/trezor-suite/suite-native/app"
+      tmux select-pane -t "$session_name:5.1"
+      tmux split-window -t "$session_name:5" -h -c "$project_dir/trezor-suite/suite-native/app/e2e"
+      tmux select-pane -t "$session_name:5.3"
+      tmux split-window -t "$session_name:5" -h -c "$project_dir/trezor-suite/suite-native/app"
+      new_window "$session_name" 6 "suite-native-ios" "$project_dir/trezor-suite/suite-native/app"
+      tmux split-window -t "$session_name:6" -v -c "$project_dir/trezor-suite/suite-native/app"
+      tmux select-pane -t "$session_name:6.1"
+      tmux split-window -t "$session_name:6" -h -c "$project_dir/trezor-suite/suite-native/app/e2e"
+      tmux select-pane -t "$session_name:6.3"
+      tmux split-window -t "$session_name:6" -h -c "$project_dir/trezor-suite/suite-native/app"
       ;;
 
     "job")
@@ -177,3 +208,5 @@ for s in "${SESSION[@]}"; do
     echo "Session '$s' already exists. Skipping."
   fi
 done
+
+tmux attach-session -t $ATTACH_SESSION:3
