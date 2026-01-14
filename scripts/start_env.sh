@@ -92,5 +92,5 @@ elif [[ "$1" == "-h" || "$1" == "--help" ]]; then
   show_help
 else
   update_brew_vim
-  sh "$HOME/scripts/dev_env.sh" && tmux attach -t "$SESSION_ATTACHE"
+  zsh "$HOME/scripts/dev_env.sh" && tmux attach -t "$SESSION_ATTACHE"
 fi
