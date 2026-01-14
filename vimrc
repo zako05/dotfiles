@@ -139,6 +139,6 @@ let g:netrw_browse_split = 0
 " }}}
 " EDITOR {{{
 "
-" Automatically wrap at 80 characters for Markdown
-au BufRead,BufNewFile *.md setlocal textwidth=80
+" Automatically wrap at 160 characters for Markdown
+au BufRead,BufNewFile *.md setlocal textwidth=160
 let vim_markdown_preview_hotkey='<C-m>'
