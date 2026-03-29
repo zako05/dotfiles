@@ -71,21 +71,23 @@ set_session () {
 
       local latest_file=($year_dir/??????-dev.todo.md(Nom[1]))
 
-      # If no file exists for this year yet, generate the new on
+      # If no file exists for this year yet, generate the new one
       if [[ -z "$latest_file" ]]; then
         local year_month=$(date +%Y%m)
-        
-        echo "Creating new file $year_dir/$year_month"
-
         latest_file="$year_dir/$year_month-dev.todo.md"
-        touch $latest_file
+        echo "Creating new file $latest_file"
+        touch "$latest_file"
       fi
+      
+      local ideas_file="$year_dir/$current_year-dev-ideas.todo.md"
+      [[ ! -f "$ideas_file" ]] && touch "$ideas_file"
 
-      new_window $session_name 1 "$session_name-dev" "$year_dir"
-      [[ -n "$latest_file" ]] && tmux send-keys -t "$session_name:1" "vim \"$latest_file\"" C-m
-      new_window $session_name 2 "$session_name-sm" "$project_dir"
-      tmux send-keys -t "$1:2" "vim sm.todo.md" C-m
-      tmux select-window -t "$session_name:1"
+      new_window "$session_name" 1 "$session_name-dev" "$year_dir"
+      tmux send-keys -t "$session_name:1" "vim \"$latest_file\"" C-m
+      tmux split-window -t "$session_name:1" -v -c "$year_dir"
+      tmux send-keys -t "$session_name:1.2" "vim \"$ideas_file\"" C-m
+      new_window "$session_name" 2 "$session_name-sm" "$project_dir"
+      tmux send-keys -t "$session_name:2" "vim sm.todo.md" C-m
       ;;
     
     "satoshilabs")
