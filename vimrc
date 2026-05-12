@@ -1,8 +1,7 @@
 " GENERAL {{{
 
 if empty(glob('~/.vim/autoload/plug.vim'))
-  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
-    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
@@ -59,7 +58,7 @@ filetype plugin indent on
 let mapleader = " "
 
 " Formatting every time save a file
-autocmd BufWritePre *.js,*.jsx,*.ts,*.tsx,*.json,*.css,*.scss,*.html silent call CocActionAsync('format')
+autocmd BufWritePre *.js,*.jsx,*.ts,*.tsx,*.json,*.css,*.scss,*.html,*.md,*.todo.md silent call CocActionAsync('format')
 
 let g:gutentags_ctags_executable = '/opt/homebrew/bin/ctags'
 
@@ -111,7 +110,7 @@ inoremap <expr> <S-Tab> coc#pum#visible() ? coc#pum#prev(1) : "\<S-Tab>"
 " VISUAL {{{
 "
 " vertical line/ruler
-set colorcolumn=80
+set colorcolumn=120
 
 " show the cursor position all the time
 set ruler
@@ -139,6 +138,13 @@ let g:netrw_browse_split = 0
 " }}}
 " EDITOR {{{
 "
-" Automatically wrap at 160 characters for Markdown
-au BufRead,BufNewFile *.md setlocal textwidth=160
+autocmd FileType markdown nnoremap <buffer> gx :call netrw#BrowseX(expand('<cfile>'))<cr>
 let vim_markdown_preview_hotkey='<C-m>'
+
+" Ensure .todo and .todo.md files are treated as markdown.
+" We use BufWinEnter to ensure this runs AFTER the vim-todo-lists plugin
+" which sets the filetype to 'todo' during BufRead/BufNewFile.
+augroup TodoMarkdownOverride
+  autocmd!
+  autocmd BufWinEnter *.todo,*.todo.md set filetype=markdown
+augroup END

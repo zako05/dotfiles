@@ -1,6 +1,8 @@
-# iTerm2 colour schema installation
+# iTerm2 Color Schema Installation
 
-[TODO] write down the notes how to setup different colour schemas for iTerm2
+- [ ] Write down notes on how to set up different color schemas for iTerm2.
 
-https://github.com/herrbischoff/iterm2-gruvbox
-https://github.com/tallpants/vscode-theme-iterm2
+## Useful Color Schemas
+
+- [iterm2-gruvbox](https://github.com/herrbischoff/iterm2-gruvbox)
+- [vscode-theme-iterm2](https://github.com/tallpants/vscode-theme-iterm2)
