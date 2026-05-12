@@ -58,7 +58,11 @@ filetype plugin indent on
 let mapleader = " "
 
 " Formatting every time save a file
-autocmd BufWritePre *.js,*.jsx,*.ts,*.tsx,*.json,*.css,*.scss,*.html,*.md,*.todo.md silent call CocActionAsync('format')
+augroup Formatting
+  autocmd!
+  autocmd BufWritePre *.js,*.jsx,*.ts,*.tsx,*.json,*.css,*.scss,*.html silent call CocAction('format')
+augroup END
+
 
 let g:gutentags_ctags_executable = '/opt/homebrew/bin/ctags'
 
