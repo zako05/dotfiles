@@ -60,7 +60,8 @@ let mapleader = " "
 " Formatting every time save a file
 augroup Formatting
   autocmd!
-  autocmd BufWritePre *.js,*.jsx,*.ts,*.tsx,*.json,*.css,*.scss,*.html silent call CocAction('format')
+  autocmd BufWritePre *.js,*.jsx,*.ts,*.tsx,*.json,*.css,*.scss,*.html
+    \ if expand('%:p') !~# 'satoshilabs' | silent call CocAction('format') | endif
 augroup END
 
 
