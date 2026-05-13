@@ -1,11 +1,20 @@
 #!/bin/zsh
 
+# Add homebrew to PATH
+export PATH="/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:$PATH"
+
+tmux() {
+  /opt/homebrew/bin/tmux "$@"
+}
+
 # Configuration variables
 readonly SESSION=(dotfiles todos satoshilabs job articles conduit hackerrank epic js-bootcamp playwright-course)
 readonly ATTACH_SESSION="satoshilabs"
 readonly DEFAULT_GITHUB_USER="zako05"
 
 # --- Helper Functions ---
+
+source "$(dirname "$0")/satoshilabs.sh"
 
 has_session () {
   tmux has-session -t "$1" &> /dev/null
@@ -17,7 +26,12 @@ new_window () {
   local window_name="$3"
   local window_path="$4"
 
-  tmux new-window -t "${session_name}:${window_index}" -n "${window_name}" -c "${window_path}" -d
+  if tmux list-windows -t "$session_name" -F "#{window_index}" | grep -q "^${window_index}$"; then
+    tmux rename-window -t "${session_name}:${window_index}" "${window_name}"
+    tmux send-keys -t "${session_name}:${window_index}" "cd \"${window_path}\" && clear" C-m
+  else
+    tmux new-window -t "${session_name}:${window_index}" -n "${window_name}" -c "${window_path}" -d
+  fi
 }
 
 # Clones or pulls a git repository.
@@ -51,8 +65,7 @@ set_session () {
       project_dir="$HOME/$session_name"
       get_repo "$session_name" "$project_dir"
 
-      new_window "$session_name" 1 "home" "$HOME"
-      new_window "$session_name" 2 "$session_name" "$project_dir"
+      new_window "$session_name" 1 "$session_name" "$project_dir"
       tmux split-window -t "$1" -v -c "$project_dir/scripts"
       ;;
 
@@ -91,51 +104,14 @@ set_session () {
       ;;
     
     "satoshilabs")
-      project_dir="$HOME/$session_name"
-      mkdir -p "$project_dir"
-      get_repo "trezor-suite" "$project_dir/trezor-suite" "trezor"
-      get_repo "trezor-user-env" "$project_dir/trezor-user-env" "trezor"
-
-      new_window "$session_name" 1 "tmp-docs" "$project_dir/docs"
-      tmux split-window -t "$session_name:1" -h -c "$project_dir/tmp/screencast"
-      tmux select-pane -t "$session_name:1.1"
-      tmux split-window -t "$session_name:1" -v -c "$project_dir/tmp"
-      new_window "$session_name" 2 "suite-docs" "$project_dir/trezor-suite/suite/e2e/docs"
-      tmux split-window -t "$session_name:2" -h -c "$project_dir/trezor-suite/suite/docs"
-      new_window "$session_name" 3 "suite" "$project_dir/trezor-suite"
-      tmux split-window -t "$session_name:3" -v -c "$project_dir/trezor-suite"
-      tmux send-keys -t "$session_name:3.1" "gemini" C-m
-      tmux select-pane -t "$session_name:3.1"
-      tmux split-window -t "$session_name:3" -h -c "$project_dir/trezor-suite/suite/e2e"
-      tmux select-pane -t "$session_name:3.3"
-      tmux split-window -t "$session_name:3" -h -c "$project_dir/trezor-suite"
-      tmux send-keys -t "$session_name:3.3" "git submodule update --init --recursive && git lfs pull && yarn && yarn build:libs && yarn suite:dev" C-m
-      new_window "$session_name" 4 "suite-native" "$project_dir/trezor-suite/suite-native/app"
-      tmux split-window -t "$session_name:4" -v -c "$project_dir/trezor-suite/suite-native/app"
-      tmux select-pane -t "$session_name:4.1"
-      tmux split-window -t "$session_name:4" -h -c "$project_dir/trezor-suite/suite-native/app/e2e"
-      tmux select-pane -t "$session_name:4.3"
-      tmux split-window -t "$session_name:4" -h -c "$project_dir/trezor-suite/suite-native/app"
-      new_window "$session_name" 5 "trezor-user-env" "$project_dir/trezor-user-env"
-      tmux split-window -t "$session_name:5" -v -c "$project_dir/trezor-user-env"
-      tmux send-keys -t "$session_name:5.1" "gemini" C-m
-      tmux select-pane -t "$session_name:5.1" 
-      tmux split-window -t "$session_name:5" -h -c "$project_dir/trezor-user-env"
-      tmux select-pane -t "$session_name:5.3" 
-      tmux split-window -t "$session_name:5" -h -c "$project_dir/trezor-suite/packages/trezor-user-env-link"
-      tmux send-keys -t "$session_name:5.3" "git fetch origin && git rebase origin/master && ./run.sh" C-m
-      tmux send-keys -t "$session_name:5.4" "vim src/api.ts" C-m
-      new_window "$session_name" 6 "suite-analytics" "$project_dir/trezor-suite/"
-      tmux split-window -t "$session_name:6" -h -c "$project_dir/trezor-suite/suite-common/analytics"
-      tmux send-keys -t "$session_name:6.1" "yarn workspace @trezor/analytics-docs build-data && yarn workspace @trezor/analytics-docs dev" C-m
-      tmux send-keys -t "$session_name:6.2" "vim README.md" C-m
+      setup_satoshilabs_session "$session_name"
       ;;
 
     "job")
       parent_dir="$HOME/workspace/$session_name"
       mkdir -p $parent_dir
       get_repo "online-cv" "$parent_dir/online-cv"
-      # get_repo "vuepress-cv" "$parent_dir/vuepress-cv"
+      new_window "$session_name" 1 "online-cv" "$parent_dir/online-cv"
       ;;
     
     "articles")
@@ -196,10 +172,6 @@ set_session () {
       tmux split-window -t "$session_name:2" -h
       ;;
   esac
-  
-  # Removes the inaccessible window 0
-  sleep 1
-  tmux unlink-window -k -t "$session_name":0
 }
 
 echo "Starting tmux server..."
@@ -213,6 +185,10 @@ for s in "${SESSION[@]}"; do
     echo "Session '$s' has been created successfully."
   else 
     echo "Session '$s' already exists. Skipping."
+  fi
+
+  if [[ "$s" == "satoshilabs" ]]; then
+    update_satoshilabs_test_windows
   fi
 done
 
