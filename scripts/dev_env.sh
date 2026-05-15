@@ -1,7 +1,7 @@
 #!/bin/zsh
 
 # Configuration variables
-readonly SESSION=(dotfiles todos job articles conduit hackerrank epic js-bootcamp playwright-course)
+readonly SESSION=(dotfiles todos job articles todos-native ironash pigeonclaw conduit hackerrank epic js-bootcamp playwright-course)
 readonly DEFAULT_GITHUB_USER="zako05"
 
 # --- Helper Functions ---
@@ -103,9 +103,42 @@ set_session () {
       tmux split-window -t "$session_name:1" -v -c "$parent_dir" -d
       new_window "$session_name" 2 "vuepress" "$parent_dir"
       ;;
+    
+    "todos-native")
+      parent_dir="$HOME/workspace/projects"
+      repo_name="todos-native"
+      mkdir -p $parent_dir
+      get_repo "$repo_name" "$parent_dir/$repo_name"
+
+      new_window "$session_name" 1 "$session_name" "$parent_dir/$repo_name"
+      tmux split-window -t "$session_name:1" -v
+      tmux split-window -t "$session_name:1" -h
+      ;;
+    
+    "pigeonclaw")
+      parent_dir="$HOME/workspace/projects"
+      repo_name="pigeonclaw"
+      mkdir -p $parent_dir
+      get_repo "$repo_name" "$parent_dir/$repo_name"
+
+      new_window "$session_name" 1 "$session_name" "$parent_dir/$repo_name"
+      tmux split-window -t "$session_name:1" -v
+      tmux split-window -t "$session_name:1" -h
+      ;;
+
+    "ironash")
+      parent_dir="$HOME/workspace/projects"
+      repo_name="ironash"
+      mkdir -p $parent_dir
+      get_repo "$repo_name" "$parent_dir/$repo_name"
+
+      new_window "$session_name" 1 "$session_name" "$parent_dir/$repo_name"
+      tmux split-window -t "$session_name:1" -v
+      tmux split-window -t "$session_name:1" -h
+      ;;
 
     "conduit")
-      parent_dir="$HOME/workspace/project"
+      parent_dir="$HOME/workspace/projects"
       repo_name="realworld-app-conduit"
       mkdir -p $parent_dir
       get_repo "$repo_name" "$parent_dir/$repo_name"
