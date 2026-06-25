@@ -8,7 +8,7 @@ setup_suite_layout () {
   local path="$3"
 
   tmux split-window -t "${session}:${window_target}" -v -c "$path"
-  tmux send-keys -t "${session}:${window_target}.1" "gemini" C-m
+  tmux send-keys -t "${session}:${window_target}.1" "agy" C-m
   tmux select-pane -t "${session}:${window_target}.1"
   tmux split-window -t "${session}:${window_target}" -h -c "$path/suite/e2e"
   tmux select-pane -t "${session}:${window_target}.3"
@@ -65,7 +65,7 @@ setup_satoshilabs_session () {
   tmux split-window -t "$session_name:4" -h -c "$project_dir/trezor-suite/suite-native/app"
   new_window "$session_name" 5 "trezor-user-env" "$project_dir/trezor-user-env"
   tmux split-window -t "$session_name:5" -v -c "$project_dir/trezor-user-env"
-  tmux send-keys -t "$session_name:5.1" "gemini" C-m
+  tmux send-keys -t "$session_name:5.1" "agy" C-m
   tmux select-pane -t "$session_name:5.1" 
   tmux split-window -t "$session_name:5" -h -c "$project_dir/trezor-user-env"
   tmux select-pane -t "$session_name:5.3" 
