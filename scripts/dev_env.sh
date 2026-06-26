@@ -1,5 +1,12 @@
 #!/bin/zsh
 
+# Add homebrew to PATH
+export PATH="/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:$PATH"
+
+tmux() {
+  /opt/homebrew/bin/tmux "$@"
+}
+
 # Configuration variables
 readonly SESSION=(dotfiles todos job articles todos-native ironash pigeonclaw conduit hackerrank epic js-bootcamp playwright-course)
 readonly DEFAULT_GITHUB_USER="zako05"
@@ -11,7 +18,17 @@ has_session () {
 }
 
 new_window () {
-  tmux new-window -t "$1:$2" -n "$3" -c "$4" -d
+  local session_name="$1"
+  local window_index="$2"
+  local window_name="$3"
+  local window_path="$4"
+
+  if tmux list-windows -t "$session_name" -F "#{window_index}" | grep -q "^${window_index}$"; then
+    tmux rename-window -t "${session_name}:${window_index}" "${window_name}"
+    tmux send-keys -t "${session_name}:${window_index}" "cd \"${window_path}\" && clear" C-m
+  else
+    tmux new-window -t "${session_name}:${window_index}" -n "${window_name}" -c "${window_path}" -d
+  fi
 }
 
 # Clones or pulls a git repository.
@@ -45,8 +62,7 @@ set_session () {
       project_dir="$HOME/$session_name"
       get_repo "$session_name" "$project_dir"
 
-      new_window "$session_name" 1 "home" "$HOME"
-      new_window "$session_name" 2 "$session_name" "$project_dir"
+      new_window "$session_name" 1 "$session_name" "$project_dir"
       tmux split-window -t "$1" -v -c "$project_dir/scripts"
       ;;
 
@@ -88,11 +104,8 @@ set_session () {
       parent_dir="$HOME/workspace/$session_name"
       mkdir -p $parent_dir
       get_repo "online-cv" "$parent_dir/online-cv"
-      # get_repo "vuepress-cv" "$parent_dir/vuepress-cv"
 
       new_window "$session_name" 1 "online-cv" "$parent_dir/online-cv"
-      tmux split-window -t "$session_name:1" -v
-      # new_window "$session_name" 2 "vuepress-cv" "$parent_dir/vuepress-cv"
       ;;
     
     "articles")
@@ -186,10 +199,6 @@ set_session () {
       tmux split-window -t "$session_name:2" -h
       ;;
   esac
-  
-  # Removes the inaccessible window 0
-  sleep 1
-  tmux unlink-window -k -t "$session_name":0
 }
 
 echo "Starting tmux server..."
