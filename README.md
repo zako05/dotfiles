@@ -89,6 +89,24 @@ sudo apt-get update
 sudo apt-get install vim
 ```
 
+## Keyboard & Navigation Configuration
+
+This system utilizes `skhd` for global keybindings and [launcher.keychron](https://launcher.keychron.com/) for hardware-level keyboard customization.
+
+### Hardware (VIA)
+- `Caps Lock` is remapped to `Left Control` at the firmware level.
+
+### Global Keybindings (`skhd`)
+- **Navigation:** `Ctrl + {h,j,k,l}` = `{Left, Down, Up, Right} Arrow`
+- **Text Selection:** `Ctrl + Shift + {h,j,k,l}` = `Shift + Arrow`
+- **Word Jumping:** `Ctrl + Opt + {h,l}` = `Alt + {Left, Right}`
+- **Line Jumping:** `Ctrl + Cmd + {h,l}` = `Cmd + {Left, Right}`
+- **Tilde:** `Opt + 1` = `~`
+
+### Terminal (Ghostty)
+- **Clear Screen:** `Cmd + L`
+- **Shell Compatibility:** Enabled Emacs-mode in `.zshrc` (`bindkey -e`) and configured `macos-option-as-alt = true` in Ghostty config.
+
 ## [Clipboard Support](https://bit.ly/2TTyubi)
 
 Vim must be compiled with clipboard support (`+clipboard`).
