@@ -1,2 +1,2 @@
 macos-option-as-alt = true
-keybind = cmd+l=clear_screen
+keybind = cmd+l=text:\x0c
