@@ -1,2 +1,3 @@
 macos-option-as-alt = true
 keybind = cmd+l=text:\x0c
+keybind = unconsumed:shift+alt+K=ignore

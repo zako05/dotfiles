@@ -14,4 +14,4 @@
 [init]
 	defaultBranch = main
 [core]
-	excludesfile = /Users/michal.zak/.gitignore_global
+	excludesfile = /Users/zako05/.gitignore_global
