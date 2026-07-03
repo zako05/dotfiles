@@ -52,10 +52,8 @@ unsetopt CORRECT_ALL
 # Set Homebrew PATH
 export PATH="/opt/homebrew/bin:$PATH"
 
-# Load ASDF (only if installed via Homebrew)
-if [ -d "/opt/homebrew/opt/asdf" ]; then
-  . /opt/homebrew/opt/asdf/libexec/asdf.sh
-fi
+# Load ASDF
+. $(brew --prefix asdf)
 
 export NVM_DIR="$HOME/.nvm"
 # [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
