@@ -1,10 +1,44 @@
 # ==============================================================================
 # 1. CORE NAVIGATION (VIM-STYLE ARROWS)
 # ==============================================================================
-ctrl - h : skhd -k "left"
-ctrl - j : skhd -k "down"
-ctrl - k : skhd -k "up"
-ctrl - l : skhd -k "right"
+# We let terminal applications handle Ctrl+h/j/k/l natively so they work in zsh/vim.
+# For other applications, they act as system arrow keys.
+
+ctrl - h [
+    "Ghostty" ~
+    "ghostty" ~
+    "iTerm" ~
+    "iTerm2" ~
+    "Terminal" ~
+    * : skhd -k "left"
+]
+
+ctrl - j [
+    "Ghostty" ~
+    "ghostty" ~
+    "iTerm" ~
+    "iTerm2" ~
+    "Terminal" ~
+    * : skhd -k "down"
+]
+
+ctrl - k [
+    "Ghostty" ~
+    "ghostty" ~
+    "iTerm" ~
+    "iTerm2" ~
+    "Terminal" ~
+    * : skhd -k "up"
+]
+
+ctrl - l [
+    "Ghostty" ~
+    "ghostty" ~
+    "iTerm" ~
+    "iTerm2" ~
+    "Terminal" ~
+    * : skhd -k "right"
+]
 
 # Text selection modifiers
 ctrl + shift - h : skhd -k "shift - left"

@@ -103,9 +103,23 @@ This system utilizes `skhd` for global keybindings and [launcher.keychron](https
 - **Line Jumping:** `Ctrl + Cmd + {h,l}` = `Cmd + {Left, Right}`
 - **Tilde:** `Opt + 1` = `~`
 
-### Terminal (Ghostty)
-- **Clear Screen:** `Cmd + L`
+### Terminal (Ghostty) & Navigation Integration
+- **Clear Screen:** `Cmd + L` is configured in Ghostty to send `\x1e` (Ctrl+^), which is bound in Zsh to `clear-screen` to clear the screen inside/outside tmux without conflicting with `Ctrl+l` (mapped to move the cursor right).
 - **Shell Compatibility:** Enabled Emacs-mode in `.zshrc` (`bindkey -e`) and configured `macos-option-as-alt = true` in Ghostty config.
+- **Terminal Keypress Passthrough:** `skhd` is configured to bypass `Ctrl+h/j/k/l` for terminal apps (Ghostty, iTerm, iTerm2, Terminal), passing raw control characters natively.
+- **Smart Vim-Aware Navigation (tmux):** In `.tmux.conf`, `Ctrl+h/j/k/l` is dynamically handled:
+  - If a Vim pane is focused, the raw `Ctrl+h/j/k/l` keys are passed through (so Vim split navigation works).
+  - Otherwise, they are translated to hardware Arrow keys (`Left, Down, Up, Right`) to navigate natively in Zsh and CLI programs (like `agy`).
+- **Terminal Mode (`xterm-256color`):** Ghostty is configured with `term = xterm-256color` to resolve key-mapping translation and terminal capability conflicts for Vim outside of tmux.
+
+#### Why is this setup required? (How it works)
+* **MacOS Isolation:** `skhd` is a macOS system-level hotkey daemon. It only queries the operating system for the active frontmost app, which is always **Ghostty** (the terminal). It has absolutely no visibility into what command or program (like Vim, Zsh, or `agy`) you are currently running inside that terminal window.
+* **The Tmux Bridge:** Because macOS isolates terminal processes, only the terminal shell itself or **`tmux`** knows what process is currently active in your terminal pane. By using `tmux` to inspect the active pane (`ps -o state= -o comm= -t '#{pane_tty}'`), we created a bridge:
+  * `skhd` says: *"If focused on Ghostty, step out of the way (`~`) and let the terminal handle the keys."*
+  * `tmux` says: *"Since the terminal passed the keys to me, let me check the active pane. If Vim is running, pass it through; if not, translate it to standard Arrow keys so it works natively in shell/CLI tools."*
+* **Alfred / Overlay App Navigation:** By default, search launchers like Alfred run as *non-activating panels*. macOS still reports the terminal (Ghostty) as focused, which causes `skhd` to bypass key translation and makes `Ctrl+h/j/k/l` fail inside Alfred.
+  * **Fix:** Open Alfred Preferences > Appearance > Options, and set **Focusing** to **Compatibility Mode**. This forces Alfred to activate and take focus, allowing `skhd` to correctly translate keybindings to hardware Arrow keys for navigating search results.
+
 
 ## [Clipboard Support](https://bit.ly/2TTyubi)
 

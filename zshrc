@@ -43,6 +43,15 @@ export HISTSIZE=4096
 # Force Emacs mode for native line/word navigation
 bindkey -e
 
+# Map Ctrl+h/j/k/l to move left/down/up/right (arrow keys) in shell prompt
+bindkey '^H' backward-char
+bindkey '^L' forward-char
+bindkey '^J' down-line-or-history
+bindkey '^K' up-line-or-history
+
+# Custom escape sequence for Cmd+L to clear screen (sent by Ghostty)
+bindkey '\x1e' clear-screen
+
 # Try not to correct command line spelling
 unsetopt CORRECT_ALL
 
