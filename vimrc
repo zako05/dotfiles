@@ -62,11 +62,13 @@ augroup Formatting
   autocmd!
   autocmd BufWritePre *.js,*.jsx,*.ts,*.tsx,*.json,*.css,*.scss,*.html silent call CocAction('format')
 augroup END
-
-
 let g:gutentags_ctags_executable = '/opt/homebrew/bin/ctags'
 
 " }}}
+" Source Node.js path resolution helper for coc.nvim
+if filereadable(expand("~/.vim/coc_node.vim"))
+  source ~/.vim/coc_node.vim
+endif
 " KEY BINDINGS {{{
 "
 " Quicker window movement

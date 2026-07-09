@@ -98,10 +98,13 @@ This system utilizes `skhd` for global keybindings and [launcher.keychron](https
 
 ### Global Keybindings (`skhd`)
 - **Navigation:** `Ctrl + {h,j,k,l}` = `{Left, Down, Up, Right} Arrow`
-- **Text Selection:** `Ctrl + Shift + {h,j,k,l}` = `Shift + Arrow`
-- **Word Jumping:** `Ctrl + Opt + {h,l}` = `Alt + {Left, Right}`
-- **Line Jumping:** `Ctrl + Cmd + {h,l}` = `Cmd + {Left, Right}`
-- **Tilde:** `Opt + 1` = `~`
+- **Text Selection:** `Ctrl + Shift + {h,j,k,l}` = `Shift + Arrow` (Select character-by-character)
+- **Word Jumping:** `Ctrl + Opt + {h,l}` = `Alt + {Left, Right}` (Move word-by-word)
+- **Word Selection:** `Ctrl + Opt + Shift + {h,l}` = `Shift + Alt + {Left, Right}` (Select word-by-word)
+- **Line Jumping:** `Ctrl + Cmd + {h,l}` = `Cmd + {Left, Right}` (Move to beginning/end of line)
+- **Line Selection:** `Ctrl + Cmd + Shift + {h,l}` = `Shift + Cmd + {Left, Right}` (Select to beginning/end of line)
+- **Backtick:** `Opt + 1` = `` ` ``
+- **Tilde:** `Opt + Shift + 1` = `~`
 
 ### Terminal (Ghostty) & Navigation Integration
 - **Clear Screen:** `Cmd + L` is configured in Ghostty to send `\x1e` (Ctrl+^), which is bound in Zsh to `clear-screen` to clear the screen inside/outside tmux without conflicting with `Ctrl+l` (mapped to move the cursor right).
@@ -146,8 +149,63 @@ brew install keychain
 
 # JavaScript Development
 
+## Node.js & Version Management
+
+Node.js is managed using `nvm` (Node Version Manager). This is required for `coc.nvim` and other JS tooling.
+
+### 1. Install nvm
+
+```zsh
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.5/install.sh | bash
+```
+
+### 2. Install Node.js LTS
+
+Once the terminal is reloaded (or `~/.zshrc` is sourced), install the latest LTS version:
+
+```zsh
+nvm install --lts
+```
+
+## Vim Integration
+
 - [coc.nvim](https://github.com/neoclide/coc.nvim)
 - [coc-tsserver](https://github.com/neoclide/coc-tsserver)
 
 Inside Vim, run `:CocInstall coc-json coc-tsserver`
+
+# Markdown Editing
+
+## MarkEdit
+
+MarkEdit is a lightweight, privacy-focused Markdown editor for macOS.
+
+Install via Homebrew:
+```zsh
+brew install --cask markedit
+```
+
+### Preview Extension (MarkEdit-preview)
+
+To enable side-by-side or HTML preview rendering inside MarkEdit:
+
+1. Download the precompiled extension file (`markedit-preview.js`) from the [MarkEdit-preview repository](https://github.com/MarkEdit-app/MarkEdit-preview):
+   ```zsh
+   curl -L -o ~/Downloads/markedit-preview.js https://raw.githubusercontent.com/MarkEdit-app/MarkEdit-preview/main/dist/markedit-preview.js
+   ```
+2. Copy the script to MarkEdit's scripts directory:
+   * **Direct Method:** Open the scripts folder in Finder:
+     ```zsh
+     open ~/Library/Containers/app.cyan.markedit/Data/Documents/scripts/
+     ```
+     Hold the **Option (⌥) key** and drag the script file in to avoid macOS App Sandbox copy blocks.
+   * **Terminal/Automation Method:** If copying via command line, you must strip the `com.apple.quarantine` attribute recursively so macOS does not block the script execution:
+     ```zsh
+     cp ~/Downloads/markedit-preview.js ~/Library/Containers/app.cyan.markedit/Data/Documents/scripts/
+     xattr -d com.apple.quarantine ~/Library/Containers/app.cyan.markedit/Data/Documents/scripts/markedit-preview.js
+     xattr -rd com.apple.quarantine ~/Library/Containers/app.cyan.markedit/Data/Documents/
+     ```
+3. Restart MarkEdit to apply changes.
+4. **Usage:** Open any Markdown file and press **`Shift + Command (⌘) + V`** (or select **Extensions** → **View Mode** → **Preview Mode** or **Side-by-Side Mode**). Once selected, MarkEdit will cache this preference and automatically open future Markdown files in the same layout.
+
 

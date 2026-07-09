@@ -52,11 +52,16 @@ ctrl + shift - l : skhd -k "shift - right"
 # We send raw native macOS movements. 
 ctrl + alt - h : skhd -k "alt - left"
 ctrl + alt - l : skhd -k "alt - right"
+ctrl + alt + shift - h : skhd -k "shift + alt - left"
+ctrl + alt + shift - l : skhd -k "shift + alt - right"
 
 ctrl + cmd - h : skhd -k "cmd - left"
 ctrl + cmd - l : skhd -k "cmd - right"
+ctrl + cmd + shift - h : skhd -k "shift + cmd - left"
+ctrl + cmd + shift - l : skhd -k "shift + cmd - right"
 
 # ==============================================================================
 # 3. UTILITIES
 # ==============================================================================
-alt - 1 : skhd -k "shift - 0x32"
+alt + shift - 1 : skhd -k "shift - 0x32"
+alt - 1 : skhd -k "0x32"

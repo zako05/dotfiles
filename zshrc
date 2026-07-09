@@ -65,8 +65,7 @@ export PATH="/opt/homebrew/bin:$PATH"
 . $(brew --prefix asdf)
 
 export NVM_DIR="$HOME/.nvm"
-# [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
-[ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 
 # Trezor related environment variables
 export HOSTNAME=`hostname`
@@ -84,3 +83,4 @@ export PATH=$PATH:$ANDROID_HOME/platform-tools
 
 # Created by `pipx` on 2025-10-07 12:48:33
 export PATH="$PATH:/Users/zako05/.local/bin"
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
