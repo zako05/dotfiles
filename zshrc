@@ -43,6 +43,15 @@ export HISTSIZE=4096
 # Force Emacs mode for native line/word navigation
 bindkey -e
 
+# Map Ctrl+h/j/k/l to move left/down/up/right (arrow keys) in shell prompt
+bindkey '^H' backward-char
+bindkey '^L' forward-char
+bindkey '^J' down-line-or-history
+bindkey '^K' up-line-or-history
+
+# Custom escape sequence for Cmd+L to clear screen (sent by Ghostty)
+bindkey '\x1e' clear-screen
+
 # Try not to correct command line spelling
 unsetopt CORRECT_ALL
 
@@ -56,8 +65,7 @@ export PATH="/opt/homebrew/bin:$PATH"
 . $(brew --prefix asdf)
 
 export NVM_DIR="$HOME/.nvm"
-# [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
-[ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 
 # Trezor related environment variables
 export HOSTNAME=`hostname`
@@ -75,3 +83,4 @@ export PATH=$PATH:$ANDROID_HOME/platform-tools
 
 # Created by `pipx` on 2025-10-07 12:48:33
 export PATH="$PATH:/Users/zako05/.local/bin"
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
