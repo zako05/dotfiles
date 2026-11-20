@@ -1,3 +1,11 @@
+term = xterm-256color
 macos-option-as-alt = true
-keybind = cmd+l=text:\x0c
+keybind = cmd+l=text:\x1e
 keybind = unconsumed:shift+alt+K=ignore
+
+# Force Ctrl+h/j/k/l to send standard control characters (bypassing kitty keyboard protocol)
+# so they can pass through tmux and work inside Zsh and Vim splits.
+keybind = ctrl+h=text:\x08
+keybind = ctrl+j=text:\x0a
+keybind = ctrl+k=text:\x0b
+keybind = ctrl+l=text:\x0c
