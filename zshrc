@@ -58,29 +58,15 @@ unsetopt CORRECT_ALL
 # FZF fuzzy searcher
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-# Set Homebrew PATH
-export PATH="/opt/homebrew/bin:$PATH"
+# Deduplicate PATH entries
+typeset -U path PATH
 
 # Load ASDF
 . $(brew --prefix asdf)
 
-export NVM_DIR="$HOME/.nvm"
+# Load NVM
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-
-# Trezor related environment variables
-export HOSTNAME=`hostname`
-export DISPLAY=:0
-
-# Android SDK
-export ANDROID_HOME=$HOME/Library/Android/sdk
-export PATH=$PATH:$ANDROID_HOME/platform-tools
-# React Native - Java for Android
-export JAVA_HOME=/Library/Java/JavaVirtualMachines/zulu-17.jdk/Contents/Home
-# React Native - Android Home
-export ANDROID_HOME=$HOME/Library/Android/sdk
-export PATH=$PATH:$ANDROID_HOME/emulator
-export PATH=$PATH:$ANDROID_HOME/platform-tools
-
-# Created by `pipx` on 2025-10-07 12:48:33
-export PATH="$PATH:/Users/zako05/.local/bin"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# PATH additions (Homebrew is set in ~/.zprofile)
+export PATH="$PATH:$ANDROID_HOME/emulator:$ANDROID_HOME/platform-tools:$HOME/.local/bin"
